@@ -1,6 +1,6 @@
 # Dewarp
 ## 2021
-DFE - Dewarping Document Image By Displacement Flow Estimation with Fully Convolutional Network (2021) ⭕
+DFE (FCN Base) - Dewarping Document Image By Displacement Flow Estimation with Fully Convolutional Network (2021) ⭕
 - Paper: https://arxiv.org/abs/2104.06815
 - Code: https://github.com/gwxie/Dewarping-Document-Image-By-Displacement-Flow-Estimation
 
