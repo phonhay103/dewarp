@@ -4,10 +4,10 @@ import json
 import logging
 from datetime import datetime, timedelta
 import concurrent.futures
-from typing import Any, List, Tuple, Callable
+from typing import Any, List, Tuple, Callable, Dict
 from models import AppConfig, Database, Entry, Topic
 from api_arxiv import fetch_arxiv
-from api_github import fetch_github, fetch_repo_stats
+from api_github import fetch_github, fetch_batch_repo_stats
 from api_openrouter import analyze_with_llm
 from readme_renderer import render_readme
 
@@ -41,31 +41,39 @@ def write_file(filepath: str, content: str) -> None:
         f.write(content)
 
 
-def enrich_github_stats(entries: List[Entry], fetch_stats_fn: Callable[[str], dict]) -> List[Entry]:
-    """Enriches entries containing a GitHub repository URL with stars, forks, and last commit timestamp."""
+def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str]], Dict[str, dict]]) -> List[Entry]:
+    """Enriches entries containing a GitHub repository URL with stars, forks, and last commit timestamp in a single batch query."""
     github_entries = [e for e in entries if e.get('code_url') and 'github.com/' in e['code_url']]
     if not github_entries:
         return entries
 
-    def update_single(e: Entry) -> Entry:
-        try:
-            parts = e['code_url'].split('github.com/')[1].strip('/').split('/')
-            if len(parts) >= 2:
-                owner_repo = f"{parts[0]}/{parts[1]}"
-                stats = fetch_stats_fn(owner_repo)
-                if stats:
-                    return {**e, **stats}
-        except Exception as err:
-            logger.error(f"Error enriching {e.get('title')}: {err}")
-        return e
+    owner_repos = []
+    for e in github_entries:
+        parts = e['code_url'].split('github.com/')[1].strip('/').split('/')
+        if len(parts) >= 2:
+            owner_repos.append(f"{parts[0]}/{parts[1]}")
 
-    logger.info(f"Enriching GitHub statistics (stars, forks, last commit) for {len(github_entries)} entries...")
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        enriched_results = list(executor.map(update_single, github_entries))
+    if not owner_repos:
+        return entries
+
+    if not os.environ.get("GITHUB_TOKEN"):
+        logger.warning("GITHUB_TOKEN is not set. Skipping batch GitHub stats update to avoid rate limits.")
+        return entries
+
+    logger.info(f"Enriching GitHub statistics in a single batch query for {len(owner_repos)} repositories...")
+    stats_map = fetch_batch_fn(owner_repos)
+
+    if not stats_map:
+        return entries
 
     entry_map = {e['id']: e for e in entries}
-    for e in enriched_results:
-        entry_map[e['id']] = e
+    for e in github_entries:
+        parts = e['code_url'].split('github.com/')[1].strip('/').split('/')
+        if len(parts) >= 2:
+            owner_repo = f"{parts[0]}/{parts[1]}"
+            if owner_repo in stats_map:
+                entry_map[e['id']] = {**e, **stats_map[owner_repo]}
+
     return list(entry_map.values())
 
 def run_pipeline(
@@ -172,8 +180,8 @@ def run_pipeline(
             entry_map[pe['id']] = pe
         db['entries'] = list(entry_map.values())
 
-    # Enrich all entries with GitHub statistics (stars, forks, last commit)
-    db['entries'] = enrich_github_stats(db['entries'], fetch_repo_stats)
+    # Enrich all entries with GitHub statistics (stars, forks, last commit) in a single batch query
+    db['entries'] = enrich_github_stats(db['entries'], fetch_batch_repo_stats)
         
     readme_content = render_md(config, db)
     return db, readme_content
