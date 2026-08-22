@@ -134,7 +134,7 @@ This repository is automatically updated monthly with the latest papers and repo
   - Code: https://github.com/zz1231me/scan
   - Tags: Dataset
   - Stars: 0 | Forks: 0 | Last Commit: 2026-07-25 07:58:33 UTC
-  - The repository provides a CLI, web UI, and Python library that automatically detects, deskews, dewarps, and cleans scanned document images—handling tasks such as shadow removal, glare reduction, and optional deep‑learning backends to produce scanner‑quality documents.
+  - A toolset that converts smartphone captures of documents or boards into high‑quality, scanner‑like images through automatic detection, deskewing, dewarping, and optional shadow/glare removal, accessible via CLI, web UI, and a Python library.
 
 - **PINTO0309/doc-dewarping** (2026)
   - Code: https://github.com/PINTO0309/doc-dewarping

@@ -787,7 +787,7 @@
       "tags": [
         "Dataset"
       ],
-      "summary": "The repository provides a CLI, web UI, and Python library that automatically detects, deskews, dewarps, and cleans scanned document images—handling tasks such as shadow removal, glare reduction, and optional deep‑learning backends to produce scanner‑quality documents."
+      "summary": "A toolset that converts smartphone captures of documents or boards into high‑quality, scanner‑like images through automatic detection, deskewing, dewarping, and optional shadow/glare removal, accessible via CLI, web UI, and a Python library."
     },
     {
       "id": "1301305539",
