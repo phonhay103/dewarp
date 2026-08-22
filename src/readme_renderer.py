@@ -15,6 +15,7 @@ def render_readme(config: Dict[str, Any], db: Dict[str, Any]) -> str:
     tags = topic.get("tags", topic.get("categories", ["Uncategorized"]))
     
     md = f"# {topic['name']} Papers & Repos\n\n"
+    md += f"[![Interactive Search & Filter](https://img.shields.io/badge/Interactive_Search_&_Filter-Live_on_GitHub_Pages-6374ff?style=for-the-badge&logo=github&logoColor=white)](https://nhay.github.io/dewarp/)\n\n"
     md += f"This repository is automatically updated monthly with the latest papers and repositories related to **{topic['name']}**.\n\n"
 
     entries = db.get("entries", [])

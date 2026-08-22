@@ -1,6 +1,10 @@
 # Image Dewarping Papers & Repos
 
-This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**.
+[![Interactive Search & Filter](https://img.shields.io/badge/Interactive_Search_&_Filter-Live_on_GitHub_Pages-6374ff?style=for-the-badge&logo=github&logoColor=white)](https://nhay.github.io/dewarp/)
+
+This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**. 
+
+💡 **Mẹo:** Việc đọc file README.md dài có thể gặp khó khăn. Bạn có thể sử dụng [**Interactive Dewarping Hub**](https://nhay.github.io/dewarp/) để dễ dàng tìm kiếm, lọc theo tag, sắp xếp theo số sao (stars) và tự động sinh mã trích dẫn BibTeX chỉ với một cú nhấp chuột!
 
 ## Survey
 - **bsiku3622/image-scanning-pipeline** (2026)

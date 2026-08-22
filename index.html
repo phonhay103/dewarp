@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Dewarping Hub — Interactive Papers & Repositories</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f7ff',
+                            100: '#ebf0ff',
+                            200: '#dae2ff',
+                            300: '#bdcbff',
+                            400: '#95a7ff',
+                            500: '#6374ff',
+                            600: '#3d48f5',
+                            700: '#2d33df',
+                            800: '#2529b4',
+                            900: '#23278f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom scrollbar for modern feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-[#0b0f19] dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-brand-500 text-white rounded-xl shadow-lg shadow-brand-500/20">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-brand-600 to-indigo-600 dark:from-brand-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                        Dewarping Hub
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Interactive Image Dewarping Papers & Repos</p>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/nhay/dewarp" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center space-x-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">GitHub Repository</span>
+                </a>
+                
+                <!-- Dark Mode Toggle -->
+                <button id="themeToggle" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/50 hover:bg-slate-200 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-300 transition" aria-label="Toggle Dark Mode">
+                    <i id="themeDarkIcon" data-lucide="moon" class="w-4 h-4 hidden"></i>
+                    <i id="themeLightIcon" data-lucide="sun" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Welcome Banner -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-indigo-800 text-white p-8 sm:p-12 shadow-xl shadow-brand-500/10">
+            <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -left-12 -top-12 w-64 h-64 bg-indigo-500/20 rounded-full blur-2xl"></div>
+            
+            <div class="relative max-w-3xl z-10 space-y-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-400/20 border border-brand-300/30 text-brand-100 backdrop-blur-sm">
+                    ✨ Automated Monthly Updates
+                </span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+                    Tìm kiếm & Lọc tài liệu Image Dewarping dễ dàng hơn
+                </h2>
+                <p class="text-base sm:text-lg text-brand-100 font-medium max-w-2xl">
+                    Trang web tương tác thu thập, phân tích và phân loại tự động các công trình nghiên cứu cùng mã nguồn mới nhất về căn chỉnh, làm phẳng ảnh tài liệu bị cong, méo.
+                </p>
+            </div>
+        </div>
+
+        <!-- Dynamic Statistics Dashboard -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" id="statsDashboard">
+            <!-- Stats Card 1: Total Items -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 rounded-2xl p-5 shadow-sm flex items-center space-x-4 transition">
+                <div class="p-3 bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 rounded-xl">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tổng Tài Liệu</p>
+                    <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statTotal">0</h3>
+                </div>
+            </div>
+            
+            <!-- Stats Card 2: Total Stars -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 rounded-2xl p-5 shadow-sm flex items-center space-x-4 transition">
+                <div class="p-3 bg-amber-50 dark:bg-amber-950/20 text-amber-500 rounded-xl">
+                    <i data-lucide="star" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tổng Stars</p>
+                    <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statStars">0</h3>
+                </div>
+            </div>
+
+            <!-- Stats Card 3: Code Repos -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 rounded-2xl p-5 shadow-sm flex items-center space-x-4 transition">
+                <div class="p-3 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500 rounded-xl">
+                    <i data-lucide="code-2" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Có Mã Nguồn</p>
+                    <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statWithCode">0</h3>
+                </div>
+            </div>
+
+            <!-- Stats Card 4: Surveys -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 rounded-2xl p-5 shadow-sm flex items-center space-x-4 transition">
+                <div class="p-3 bg-purple-50 dark:bg-purple-950/30 text-purple-500 rounded-xl">
+                    <i data-lucide="clipboard-list" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Surveys / Benchmarks</p>
+                    <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statSurveys">0</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Search and Controls Panel -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            
+            <!-- Global Search and View Toggle -->
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <!-- Search Bar -->
+                <div class="relative w-full md:flex-grow max-w-2xl">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm theo tiêu đề, tóm tắt, tác giả hoặc URL..." 
+                           class="w-full pl-11 pr-10 py-3 bg-slate-50 hover:bg-slate-100/70 focus:bg-white dark:bg-slate-950 dark:hover:bg-slate-950/80 dark:focus:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-brand-500 dark:focus:border-brand-500 rounded-2xl text-sm focus:outline-none focus:ring-4 focus:ring-brand-500/10 dark:focus:ring-brand-500/5 text-slate-800 dark:text-slate-100 transition placeholder-slate-400 dark:placeholder-slate-500">
+                    <button id="searchClearBtn" class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- View & Sort Controls -->
+                <div class="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-end">
+                    <!-- Sort Dropdown -->
+                    <div class="flex items-center space-x-2">
+                        <label for="sortSelect" class="text-xs font-semibold text-slate-500 uppercase tracking-wider hidden lg:block">Sắp xếp:</label>
+                        <select id="sortSelect" class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm font-medium rounded-xl py-2 pl-3 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-500/20 text-slate-700 dark:text-slate-300 cursor-pointer">
+                            <option value="stars-desc">Stars (Nhiều nhất)</option>
+                            <option value="year-desc">Năm (Mới nhất)</option>
+                            <option value="year-asc">Năm (Cũ nhất)</option>
+                            <option value="forks-desc">Forks (Nhiều nhất)</option>
+                            <option value="commit-desc">Commit mới nhất</option>
+                            <option value="title-asc">Tiêu đề (A-Z)</option>
+                        </select>
+                    </div>
+
+                    <!-- View Mode Toggle Buttons -->
+                    <div class="flex items-center bg-slate-100 dark:bg-slate-950 p-1 border border-slate-200 dark:border-slate-800 rounded-xl">
+                        <button id="viewGridBtn" class="p-2 rounded-lg text-brand-600 bg-white dark:bg-slate-900 dark:text-brand-400 shadow-sm" title="Chế độ lưới (Card)">
+                            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                        </button>
+                        <button id="viewListBtn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200" title="Chế độ danh sách (Bảng)">
+                            <i data-lucide="list" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 dark:border-slate-800/60 my-2"></div>
+
+            <!-- Advanced Filters -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Filter by Source Type -->
+                <div class="space-y-2">
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Loại Tài Liệu</span>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border transition bg-brand-500 text-white border-brand-500" data-type="all">Tất cả</button>
+                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition" data-type="with-code">Có Code Github</button>
+                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition" data-type="paper-only">Chỉ có Paper</button>
+                    </div>
+                </div>
+
+                <!-- Filter by Tag (Extracted dynamically) -->
+                <div class="space-y-2">
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Phân Loại (Tags)</span>
+                    <div class="flex flex-wrap gap-1.5" id="tagsFilterContainer">
+                        <!-- Loading placeholder, will be replaced by script -->
+                        <span class="text-xs text-slate-400">Đang tải tag...</span>
+                    </div>
+                </div>
+
+                <!-- Filter by Year -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Năm Xuất Bản</span>
+                        <button id="resetYearBtn" class="text-xs text-brand-600 dark:text-brand-400 hover:underline font-medium hidden">Đặt lại</button>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5" id="yearsFilterContainer">
+                        <!-- Will be dynamically filled -->
+                        <span class="text-xs text-slate-400">Đang tải năm...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Filters Info and Reset Button -->
+            <div id="activeFiltersContainer" class="hidden flex items-center justify-between bg-brand-50/50 dark:bg-brand-950/10 border border-brand-100 dark:border-brand-900/30 rounded-2xl px-4 py-3 text-sm">
+                <div class="flex items-center space-x-2 text-slate-600 dark:text-slate-400 flex-wrap gap-y-1">
+                    <span class="font-semibold text-brand-600 dark:text-brand-400">Đang áp dụng:</span>
+                    <span id="activeFiltersText" class="text-xs"></span>
+                </div>
+                <button id="resetAllFiltersBtn" class="text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition shrink-0 ml-4">
+                    Xóa tất cả bộ lọc
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Count & Results Area -->
+        <div class="space-y-4">
+            <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                <span>Hiển thị <strong id="resultsCount" class="text-slate-800 dark:text-white font-bold">0</strong> trên <strong id="totalCount" class="font-bold">0</strong> tài liệu</span>
+                <span id="searchStatus" class="italic animate-pulse hidden">Đang tìm kiếm...</span>
+            </div>
+
+            <!-- Card Grid View (Active by default) -->
+            <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Content will be generated by JavaScript -->
+            </div>
+
+            <!-- Compact Table View (Hidden by default) -->
+            <div id="tableViewContainer" class="hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
+                        <thead class="bg-slate-50 dark:bg-slate-950">
+                            <tr>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12 text-center">Năm</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tiêu đề / Tác giả / Mô tả</th>
+                                <th scope="col" class="px-6 py-4 class text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Phân loại</th>
+                                <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-20">Stars</th>
+                                <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-40">Liên kết / Trích dẫn</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-800" id="tableBody">
+                            <!-- Content will be generated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16 bg-white dark:bg-slate-900 border border-dashed border-slate-300 dark:border-slate-800 rounded-3xl space-y-4">
+                <div class="w-16 h-16 bg-slate-100 dark:bg-slate-950 text-slate-400 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                    <i data-lucide="search-x" class="w-8 h-8"></i>
+                </div>
+                <div class="space-y-1">
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-white">Không tìm thấy tài liệu phù hợp</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">Vui lòng thử đổi từ khóa tìm kiếm hoặc xóa bớt các bộ lọc đang chọn.</p>
+                </div>
+                <button id="emptyResetBtn" class="px-4 py-2 text-sm font-semibold bg-brand-500 hover:bg-brand-600 text-white rounded-xl transition">
+                    Xóa tất cả bộ lọc
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-[#080b13] border-t border-slate-200 dark:border-slate-800 transition-colors duration-300 mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left space-y-1">
+                <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                    &copy; <span id="currentYear"></span> Image Dewarping Hub. Dự án mã nguồn mở.
+                </p>
+                <p class="text-xs text-slate-400 dark:text-slate-500">
+                    Cập nhật tự động định kỳ qua GitHub Actions sử dụng mô hình LLM.
+                </p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://arxiv.org/" target="_blank" rel="noopener" class="text-xs text-slate-400 hover:text-brand-500 transition">arXiv</a>
+                <span class="text-slate-300 dark:text-slate-800">&bull;</span>
+                <a href="https://github.com/" target="_blank" rel="noopener" class="text-xs text-slate-400 hover:text-brand-500 transition">GitHub API</a>
+                <span class="text-slate-300 dark:text-slate-800">&bull;</span>
+                <a href="https://github.com/nhay/dewarp" target="_blank" class="text-xs text-slate-400 hover:text-brand-500 transition flex items-center gap-1">
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> Star repo
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BibTeX Citation Modal -->
+    <div id="citeModal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <!-- Modal Overlay -->
+        <div class="fixed inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm transition-opacity" id="citeModalOverlay"></div>
+        
+        <!-- Modal Content Box -->
+        <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl transition-transform scale-95 duration-300" id="citeModalContent">
+            
+            <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i data-lucide="quote" class="text-brand-500 w-5 h-5"></i>
+                        Trích dẫn BibTeX
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Sao chép cấu trúc trích dẫn sau để sử dụng trong bài viết khoa học (LaTeX/BibTeX) của bạn.</p>
+                </div>
+                <button id="closeCiteModalBtn" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-950/80 transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200" id="citePaperTitle">Tên bài báo...</h4>
+                
+                <div class="relative group">
+                    <pre class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-xs font-mono text-slate-700 dark:text-slate-300 overflow-x-auto max-h-60" id="bibtexContent">
+                    </pre>
+                    <!-- Copy Button Inside Pre -->
+                    <button id="copyCiteBtn" class="absolute top-3 right-3 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-slate-50 dark:hover:bg-slate-950/50 shadow-sm flex items-center space-x-1.5 transition">
+                        <i data-lucide="copy" class="w-3.5 h-3.5" id="copyBtnIcon"></i>
+                        <span id="copyBtnText">Sao chép</span>
+                    </button>
+                </div>
+                
+                <div class="flex justify-end pt-2">
+                    <button id="closeCiteModalBtnBottom" class="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-950 transition">
+                        Đóng lại
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Theme management (Dark / Light Mode)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeDarkIcon = document.getElementById('themeDarkIcon');
+        const themeLightIcon = document.getElementById('themeLightIcon');
+
+        // Check local storage or system preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeDarkIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeLightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeDarkIcon.classList.add('hidden');
+                themeLightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeLightIcon.classList.add('hidden');
+                themeDarkIcon.classList.remove('hidden');
+            }
+        });
+
+        // Application State
+        let allEntries = [];
+        let filteredEntries = [];
+        let activeFilters = {
+            search: '',
+            type: 'all', // all, with-code, paper-only
+            tags: [],    // selected tags
+            years: [],   // selected years
+            sortBy: 'stars-desc',
+            viewMode: 'grid' // grid, list
+        };
+
+        // DOM elements
+        const cardsGrid = document.getElementById('cardsGrid');
+        const tableViewContainer = document.getElementById('tableViewContainer');
+        const tableBody = document.getElementById('tableBody');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const searchClearBtn = document.getElementById('searchClearBtn');
+        const sortSelect = document.getElementById('sortSelect');
+        const viewGridBtn = document.getElementById('viewGridBtn');
+        const viewListBtn = document.getElementById('viewListBtn');
+        const tagsFilterContainer = document.getElementById('tagsFilterContainer');
+        const yearsFilterContainer = document.getElementById('yearsFilterContainer');
+        const resetYearBtn = document.getElementById('resetYearBtn');
+        const activeFiltersContainer = document.getElementById('activeFiltersContainer');
+        const activeFiltersText = document.getElementById('activeFiltersText');
+        const resetAllFiltersBtn = document.getElementById('resetAllFiltersBtn');
+        const resultsCount = document.getElementById('resultsCount');
+        const totalCount = document.getElementById('totalCount');
+        const searchStatus = document.getElementById('searchStatus');
+        const emptyResetBtn = document.getElementById('emptyResetBtn');
+
+        // Stat widgets
+        const statTotal = document.getElementById('statTotal');
+        const statStars = document.getElementById('statStars');
+        const statWithCode = document.getElementById('statWithCode');
+        const statSurveys = document.getElementById('statSurveys');
+
+        // Tag Color Configuration
+        const tagColors = {
+            'Survey': 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 border-purple-200/50 dark:border-purple-800/30',
+            'Method': 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 border-blue-200/50 dark:border-blue-800/30',
+            'Dataset': 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300 border-emerald-200/50 dark:border-emerald-800/30',
+            'Tool': 'bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-300 border-amber-200/50 dark:border-amber-800/30',
+            'Uncategorized': 'bg-slate-50 text-slate-700 dark:bg-slate-900/20 dark:text-slate-400 border-slate-200/50 dark:border-slate-800/30'
+        };
+
+        // Fetch data from database.json
+        async function loadDatabase() {
+            try {
+                const response = await fetch('./data/database.json');
+                if (!response.ok) {
+                    throw new Error('Không thể tải tệp data/database.json');
+                }
+                const data = await response.json();
+                allEntries = data.entries || [];
+                filteredEntries = [...allEntries];
+                
+                // Initialize Application
+                initDashboard();
+                initFilterControls();
+                applyFilters();
+                lucide.createIcons();
+            } catch (error) {
+                console.error(error);
+                cardsGrid.innerHTML = `
+                    <div class="col-span-2 text-center py-16 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/40 rounded-3xl space-y-4">
+                        <div class="p-3 bg-red-100 dark:bg-red-950 text-red-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+                            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-red-900 dark:text-red-200">Không tìm thấy hoặc không thể nạp tệp dữ liệu</h4>
+                        <p class="text-sm text-red-700 dark:text-red-400 max-w-md mx-auto">
+                            Hãy chắc chắn rằng file <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded font-mono">data/database.json</code> đang nằm đúng vị trí và có dữ liệu hợp lệ.
+                        </p>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        // Initialize Statistics Dashboard
+        function initDashboard() {
+            statTotal.textContent = allEntries.length;
+            
+            let totalStars = 0;
+            let withCodeCount = 0;
+            let surveyCount = 0;
+
+            allEntries.forEach(entry => {
+                totalStars += entry.stars || 0;
+                if (entry.code_url) withCodeCount++;
+                if (entry.tags && (entry.tags.includes('Survey') || entry.tags.includes('Dataset'))) {
+                    surveyCount++;
+                }
+            });
+
+            statStars.textContent = totalStars.toLocaleString();
+            statWithCode.textContent = withCodeCount;
+            statSurveys.textContent = surveyCount;
+        }
+
+        // Parse and create search/filter elements (Tags & Years)
+        function initFilterControls() {
+            // Extract unique tags and years
+            const tagsSet = new Set();
+            const yearsSet = new Set();
+
+            allEntries.forEach(entry => {
+                if (entry.tags) {
+                    entry.tags.forEach(tag => tagsSet.add(tag));
+                }
+                if (entry.year) {
+                    yearsSet.add(entry.year);
+                }
+            });
+
+            // Populate Tags Filter
+            const tagsList = Array.from(tagsSet).sort();
+            tagsFilterContainer.innerHTML = '';
+            
+            // Generate color-coordinated tag buttons
+            tagsList.forEach(tag => {
+                const count = allEntries.filter(e => e.tags && e.tags.includes(tag)).length;
+                const button = document.createElement('button');
+                button.className = `tag-filter-btn px-2.5 py-1 text-xs font-medium rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/50 hover:bg-slate-100 dark:hover:bg-slate-950 hover:text-slate-800 dark:hover:text-slate-200 transition flex items-center space-x-1.5`;
+                button.dataset.tag = tag;
+                button.innerHTML = `
+                    <span>${tag}</span>
+                    <span class="px-1.5 py-0.2 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md text-[10px] font-bold">${count}</span>
+                `;
+                
+                button.addEventListener('click', () => toggleTagFilter(tag, button));
+                tagsFilterContainer.appendChild(button);
+            });
+
+            // Populate Years Filter
+            const yearsList = Array.from(yearsSet).sort((a, b) => b - a); // Newest first
+            yearsFilterContainer.innerHTML = '';
+            
+            yearsList.forEach(year => {
+                if (!year) return;
+                const count = allEntries.filter(e => e.year === year).length;
+                const button = document.createElement('button');
+                button.className = `year-filter-btn px-2.5 py-1 text-xs font-medium rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/50 hover:bg-slate-100 dark:hover:bg-slate-950 hover:text-slate-800 dark:hover:text-slate-200 transition flex items-center space-x-1.5`;
+                button.dataset.year = year;
+                button.innerHTML = `
+                    <span>${year}</span>
+                    <span class="px-1.5 py-0.2 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md text-[10px] font-bold">${count}</span>
+                `;
+                
+                button.addEventListener('click', () => toggleYearFilter(year, button));
+                yearsFilterContainer.appendChild(button);
+            });
+        }
+
+        // Toggle tag in state and style button
+        function toggleTagFilter(tag, button) {
+            const index = activeFilters.tags.indexOf(tag);
+            if (index > -1) {
+                activeFilters.tags.splice(index, 1);
+                button.classList.remove('bg-brand-500', 'text-white', 'border-brand-500', 'hover:bg-brand-600');
+                button.classList.add('bg-slate-50', 'dark:bg-slate-950/50', 'text-slate-600', 'dark:text-slate-400', 'border-slate-200', 'dark:border-slate-800');
+                // restore count sub-pill styles
+                button.querySelector('span:last-child').className = "px-1.5 py-0.2 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md text-[10px] font-bold";
+            } else {
+                activeFilters.tags.push(tag);
+                button.classList.add('bg-brand-500', 'text-white', 'border-brand-500', 'hover:bg-brand-600');
+                button.classList.remove('bg-slate-50', 'dark:bg-slate-950/50', 'text-slate-600', 'dark:text-slate-400', 'border-slate-200', 'dark:border-slate-800');
+                // modify count sub-pill styles for dark-theme white text contrast
+                button.querySelector('span:last-child').className = "px-1.5 py-0.2 bg-brand-600 dark:bg-brand-400 text-white dark:text-brand-950 rounded-md text-[10px] font-bold";
+            }
+            applyFilters();
+        }
+
+        // Toggle year in state and style button
+        function toggleYearFilter(year, button) {
+            const index = activeFilters.years.indexOf(year);
+            if (index > -1) {
+                activeFilters.years.splice(index, 1);
+                button.classList.remove('bg-brand-500', 'text-white', 'border-brand-500', 'hover:bg-brand-600');
+                button.classList.add('bg-slate-50', 'dark:bg-slate-950/50', 'text-slate-600', 'dark:text-slate-400', 'border-slate-200', 'dark:border-slate-800');
+                button.querySelector('span:last-child').className = "px-1.5 py-0.2 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md text-[10px] font-bold";
+            } else {
+                activeFilters.years.push(year);
+                button.classList.add('bg-brand-500', 'text-white', 'border-brand-500', 'hover:bg-brand-600');
+                button.classList.remove('bg-slate-50', 'dark:bg-slate-950/50', 'text-slate-600', 'dark:text-slate-400', 'border-slate-200', 'dark:border-slate-800');
+                button.querySelector('span:last-child').className = "px-1.5 py-0.2 bg-brand-600 dark:bg-brand-400 text-white dark:text-brand-950 rounded-md text-[10px] font-bold";
+            }
+            applyFilters();
+        }
+
+        // Apply filters & sorters and trigger rendering
+        function applyFilters() {
+            // Start searching indicator
+            searchStatus.classList.remove('hidden');
+
+            filteredEntries = allEntries.filter(entry => {
+                // 1. Text Search
+                if (activeFilters.search) {
+                    const searchLower = activeFilters.search.toLowerCase();
+                    const titleMatch = entry.title && entry.title.toLowerCase().includes(searchLower);
+                    const summaryMatch = entry.summary && entry.summary.toLowerCase().includes(searchLower);
+                    const authorsMatch = entry.authors && entry.authors.toLowerCase().includes(searchLower);
+                    const urlMatch = (entry.paper_url && entry.paper_url.toLowerCase().includes(searchLower)) ||
+                                     (entry.code_url && entry.code_url.toLowerCase().includes(searchLower));
+                    
+                    if (!titleMatch && !summaryMatch && !authorsMatch && !urlMatch) {
+                        return false;
+                    }
+                }
+
+                // 2. Resource Type
+                if (activeFilters.type === 'with-code' && !entry.code_url) {
+                    return false;
+                }
+                if (activeFilters.type === 'paper-only' && entry.code_url) {
+                    return false;
+                }
+
+                // 3. Tags (Match if any of selected tags are in entry)
+                if (activeFilters.tags.length > 0) {
+                    if (!entry.tags || !activeFilters.tags.every(t => entry.tags.includes(t))) {
+                        return false; // must contain all selected tags
+                    }
+                }
+
+                // 4. Years (Match if year matches any selected years)
+                if (activeFilters.years.length > 0) {
+                    if (!activeFilters.years.includes(entry.year)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            // Sort results
+            sortFilteredEntries();
+
+            // Render output
+            renderEntries();
+            updateActiveFiltersStatus();
+
+            searchStatus.classList.add('hidden');
+        }
+
+        // Sorting function
+        function sortFilteredEntries() {
+            const sortBy = activeFilters.sortBy;
+            
+            filteredEntries.sort((a, b) => {
+                if (sortBy === 'stars-desc') {
+                    return (b.stars || 0) - (a.stars || 0);
+                }
+                if (sortBy === 'forks-desc') {
+                    return (b.forks || 0) - (a.forks || 0);
+                }
+                if (sortBy === 'year-desc') {
+                    return parseInt(b.year || 0) - parseInt(a.year || 0);
+                }
+                if (sortBy === 'year-asc') {
+                    return parseInt(a.year || 0) - parseInt(b.year || 0);
+                }
+                if (sortBy === 'commit-desc') {
+                    const dateA = a.last_commit ? new Date(a.last_commit) : new Date(0);
+                    const dateB = b.last_commit ? new Date(b.last_commit) : new Date(0);
+                    return dateB - dateA;
+                }
+                if (sortBy === 'title-asc') {
+                    return (a.title || '').localeCompare(b.title || '');
+                }
+                return 0;
+            });
+        }
+
+        // Render entries either in Card Grid or List Table mode
+        function renderEntries() {
+            totalCount.textContent = allEntries.length;
+            resultsCount.textContent = filteredEntries.length;
+
+            if (filteredEntries.length === 0) {
+                emptyState.classList.remove('hidden');
+                cardsGrid.classList.add('hidden');
+                tableViewContainer.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            if (activeFilters.viewMode === 'grid') {
+                cardsGrid.classList.remove('hidden');
+                tableViewContainer.classList.add('hidden');
+                renderGrid();
+            } else {
+                cardsGrid.classList.add('hidden');
+                tableViewContainer.classList.remove('hidden');
+                renderTable();
+            }
+
+            // Apply newly dynamically inserted icons
+            lucide.createIcons();
+        }
+
+        // Render Card Grid View
+        function renderGrid() {
+            cardsGrid.innerHTML = '';
+            
+            filteredEntries.forEach(entry => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/70 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition duration-300 flex flex-col justify-between space-y-4";
+                
+                // Header of Card (Title, Year and Tags)
+                let tagBadgesHtml = '';
+                if (entry.tags) {
+                    entry.tags.forEach(tag => {
+                        const style = tagColors[tag] || tagColors['Uncategorized'];
+                        tagBadgesHtml += `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold border ${style}">${tag}</span> `;
+                    });
+                }
+
+                const starsHtml = entry.code_url ? `
+                    <div class="flex items-center space-x-3 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                        <span class="flex items-center space-x-1 hover:text-amber-500 cursor-default transition">
+                            <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-current"></i>
+                            <span>${entry.stars || 0}</span>
+                        </span>
+                        <span class="flex items-center space-x-1 hover:text-brand-500 cursor-default transition">
+                            <i data-lucide="git-fork" class="w-4 h-4 text-slate-400"></i>
+                            <span>${entry.forks || 0}</span>
+                        </span>
+                    </div>
+                ` : '';
+
+                const commitHtml = (entry.code_url && entry.last_commit) ? `
+                    <div class="flex items-center space-x-1 text-[11px] text-slate-400 dark:text-slate-500">
+                        <i data-lucide="clock" class="w-3 h-3"></i>
+                        <span>Commit cuối: ${entry.last_commit.split(' ')[0]}</span>
+                    </div>
+                ` : '';
+
+                // Clean title if has (Year) at the end
+                let displayTitle = entry.title || 'Không có tiêu đề';
+                
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start gap-4">
+                            <span class="px-2.5 py-0.8 bg-brand-50 dark:bg-brand-950/30 text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-900/40 rounded-xl text-xs font-bold shrink-0">
+                                ${entry.year || 'N/A'}
+                            </span>
+                            ${starsHtml}
+                        </div>
+                        
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug hover:text-brand-600 dark:hover:text-brand-400 transition cursor-pointer" onclick="openDetails('${entry.id}')">
+                            ${displayTitle}
+                        </h3>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            ${tagBadgesHtml}
+                        </div>
+
+                        <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed pt-1">
+                            ${entry.summary || 'Chưa có bản mô tả tóm tắt cho tài liệu này.'}
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800/50 flex items-center justify-between gap-2">
+                        ${commitHtml || '<div></div>'}
+                        
+                        <div class="flex items-center space-x-2">
+                            <button onclick="generateCitation('${entry.id}')" class="p-2 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="Trích dẫn BibTeX">
+                                <i data-lucide="quote" class="w-4 h-4"></i>
+                            </button>
+                            ${entry.paper_url ? `
+                                <a href="${entry.paper_url}" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="Xem Paper">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                </a>
+                            ` : ''}
+                            ${entry.code_url ? `
+                                <a href="${entry.code_url}" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-github hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="Xem GitHub">
+                                    <i data-lucide="github" class="w-4 h-4"></i>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                cardsGrid.appendChild(card);
+            });
+        }
+
+        // Render Table View
+        function renderTable() {
+            tableBody.innerHTML = '';
+
+            filteredEntries.forEach(entry => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition duration-150";
+
+                let tagBadgesHtml = '';
+                if (entry.tags) {
+                    entry.tags.forEach(tag => {
+                        const style = tagColors[tag] || tagColors['Uncategorized'];
+                        tagBadgesHtml += `<span class="inline-block px-1.5 py-0.2 rounded-md text-[10px] font-bold border ${style}">${tag}</span> `;
+                    });
+                }
+
+                const starsHtml = entry.code_url ? `
+                    <div class="flex items-center justify-center space-x-1 text-slate-600 dark:text-slate-300 font-semibold text-xs">
+                        <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400 fill-current"></i>
+                        <span>${entry.stars || 0}</span>
+                    </div>
+                ` : `<span class="text-slate-400 text-xs">-</span>`;
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4 text-center font-bold text-slate-700 dark:text-slate-300 text-xs w-12">
+                        <span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded-md">${entry.year || '-'}</span>
+                    </td>
+                    <td class="px-6 py-4 max-w-lg">
+                        <div class="space-y-1">
+                            <div class="font-semibold text-slate-900 dark:text-white hover:text-brand-500 dark:hover:text-brand-400 cursor-pointer transition text-sm" onclick="openDetails('${entry.id}')">
+                                ${entry.title}
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                                ${entry.summary || 'Không có tóm tắt.'}
+                            </p>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex flex-wrap gap-1">
+                            ${tagBadgesHtml}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        ${starsHtml}
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end space-x-2">
+                            <button onclick="generateCitation('${entry.id}')" class="p-1.5 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition" title="Trích dẫn">
+                                <i data-lucide="quote" class="w-3.5 h-3.5"></i>
+                            </button>
+                            ${entry.paper_url ? `
+                                <a href="${entry.paper_url}" target="_blank" rel="noopener" class="p-1.5 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition" title="Paper">
+                                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                                </a>
+                            ` : ''}
+                            ${entry.code_url ? `
+                                <a href="${entry.code_url}" target="_blank" rel="noopener" class="p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition" title="GitHub">
+                                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </td>
+                `;
+
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Generate Active Filters Indicator Text
+        function updateActiveFiltersStatus() {
+            let activeFiltersList = [];
+
+            if (activeFilters.type !== 'all') {
+                const label = activeFilters.type === 'with-code' ? 'Có Code Github' : 'Chỉ có Paper';
+                activeFiltersList.push(`loại "${label}"`);
+            }
+
+            if (activeFilters.tags.length > 0) {
+                activeFiltersList.push(`tags: [${activeFilters.tags.join(', ')}]`);
+            }
+
+            if (activeFilters.years.length > 0) {
+                activeFiltersList.push(`năm: [${activeFilters.years.join(', ')}]`);
+            }
+
+            if (activeFiltersList.length > 0) {
+                activeFiltersContainer.classList.remove('hidden');
+                activeFiltersText.textContent = activeFiltersList.join(' + ');
+            } else {
+                activeFiltersContainer.classList.add('hidden');
+            }
+        }
+
+        // Open details dialog (we can use alert or an expanding system. Let's reuse BibTeX modal format to show a beautiful Detail Modal instead!)
+        function openDetails(id) {
+            const entry = allEntries.find(e => e.id === id);
+            if (!entry) return;
+            
+            // Re-using the same modal or dynamically creating alert. Let's use the bibtex modal layout but adapt content
+            const citePaperTitle = document.getElementById('citePaperTitle');
+            const bibtexContent = document.getElementById('bibtexContent');
+            const citeModal = document.getElementById('citeModal');
+            
+            citePaperTitle.innerHTML = `
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2 py-0.5 bg-brand-500 text-white rounded text-xs font-bold">${entry.year}</span>
+                        <span class="text-xs text-slate-400">${entry.id.includes('arxiv') ? 'arXiv Paper' : 'GitHub Repository'}</span>
+                    </div>
+                    <div class="text-lg font-bold text-slate-900 dark:text-white">${entry.title}</div>
+                </div>
+            `;
+            
+            let htmlDesc = `
+                <div class="space-y-4 text-slate-700 dark:text-slate-300 font-sans text-sm">
+                    <div>
+                        <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Mô tả tóm tắt</h5>
+                        <p class="leading-relaxed bg-slate-50 dark:bg-slate-950 p-4 border border-slate-200 dark:border-slate-800 rounded-2xl">${entry.summary || 'Chưa có bản tóm tắt.'}</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        ${entry.code_url ? `
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Thống kê GitHub</h5>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-around">
+                                <span class="flex items-center gap-1 font-semibold text-xs"><i data-lucide="star" class="w-4 h-4 text-amber-400"></i> ${entry.stars || 0}</span>
+                                <span class="flex items-center gap-1 font-semibold text-xs"><i data-lucide="git-fork" class="w-4 h-4 text-slate-400"></i> ${entry.forks || 0}</span>
+                            </div>
+                        </div>` : ''}
+                        
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Phân loại (Tags)</h5>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl flex flex-wrap gap-1">
+                                ${entry.tags ? entry.tags.map(t => `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300">${t}</span>`).join('') : '-'}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 justify-end pt-4">
+                        ${entry.paper_url ? `<a href="${entry.paper_url}" target="_blank" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs font-bold rounded-xl flex items-center gap-1.5 transition"><i data-lucide="file-text" class="w-4 h-4"></i> Xem Paper</a>` : ''}
+                        ${entry.code_url ? `<a href="${entry.code_url}" target="_blank" class="px-4 py-2 bg-slate-900 hover:bg-black dark:bg-brand-500 dark:hover:bg-brand-600 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition"><i data-lucide="github" class="w-4 h-4"></i> Link GitHub</a>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            bibtexContent.innerHTML = htmlDesc;
+            bibtexContent.classList.remove('font-mono', 'text-xs');
+            bibtexContent.classList.add('text-sm');
+            
+            // Hide citation specific copy button in details view
+            document.getElementById('copyCiteBtn').classList.add('hidden');
+            
+            citeModal.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('citeModalContent').classList.remove('scale-95');
+                document.getElementById('citeModalContent').classList.add('scale-100');
+            }, 10);
+            
+            lucide.createIcons();
+        }
+
+        // Generate Citation Modal
+        function generateCitation(id) {
+            const entry = allEntries.find(e => e.id === id);
+            if (!entry) return;
+
+            // Generate BibTeX template
+            // Attempt to create a citation key: AuthorYearTitle
+            let citationKey = 'dewarping_paper_' + entry.year;
+            if (entry.code_url) {
+                const parts = entry.code_url.replace('https://github.com/', '').split('/');
+                if (parts.length >= 2) {
+                    citationKey = parts[0] + parts[1] + entry.year;
+                }
+            } else if (entry.id.includes('arxiv')) {
+                const arxivId = entry.id.split('/abs/')[1]?.replace('.', '') || '';
+                citationKey = 'arxiv' + arxivId;
+            }
+
+            // Extract arxiv ID for journal entry
+            let journal = 'arXiv preprint';
+            if (entry.id.includes('arxiv')) {
+                const arxivId = entry.id.split('/abs/')[1];
+                if (arxivId) {
+                    journal = `arXiv preprint arXiv:${arxivId}`;
+                }
+            }
+
+            // Simple title sanitizer
+            const cleanTitle = entry.title.replace(/\s\(\d{4}\)$/, '').trim();
+
+            const bibtex = `@article{${citationKey},
+  title={${cleanTitle}},
+  author={${entry.authors || 'Image Dewarping Contributors'}},
+  journal={${journal}},
+  year={${entry.year || new Date().getFullYear()}},
+  url={${entry.paper_url || entry.code_url || entry.id}}
+}`;
+
+            document.getElementById('citePaperTitle').textContent = entry.title;
+            const bibtexContent = document.getElementById('bibtexContent');
+            bibtexContent.textContent = bibtex;
+            bibtexContent.classList.add('font-mono', 'text-xs');
+            bibtexContent.classList.remove('text-sm');
+
+            // Show copy citation button
+            document.getElementById('copyCiteBtn').classList.remove('hidden');
+            resetCopyButton();
+
+            // Display modal with animation
+            const citeModal = document.getElementById('citeModal');
+            citeModal.classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('citeModalContent').classList.remove('scale-95');
+                document.getElementById('citeModalContent').classList.add('scale-100');
+            }, 10);
+        }
+
+        // Close BibTeX Modal
+        const citeModal = document.getElementById('citeModal');
+        const closeCiteModalBtn = document.getElementById('closeCiteModalBtn');
+        const closeCiteModalBtnBottom = document.getElementById('closeCiteModalBtnBottom');
+        const citeModalOverlay = document.getElementById('citeModalOverlay');
+
+        function hideModal() {
+            document.getElementById('citeModalContent').classList.add('scale-95');
+            document.getElementById('citeModalContent').classList.remove('scale-100');
+            setTimeout(() => {
+                citeModal.classList.add('hidden');
+            }, 150);
+        }
+
+        closeCiteModalBtn.addEventListener('click', hideModal);
+        closeCiteModalBtnBottom.addEventListener('click', hideModal);
+        citeModalOverlay.addEventListener('click', hideModal);
+
+        // Copy Citation Code
+        const copyCiteBtn = document.getElementById('copyCiteBtn');
+        const copyBtnText = document.getElementById('copyBtnText');
+        const copyBtnIcon = document.getElementById('copyBtnIcon');
+
+        copyCiteBtn.addEventListener('click', () => {
+            const codeText = document.getElementById('bibtexContent').textContent;
+            navigator.clipboard.writeText(codeText).then(() => {
+                copyBtnText.textContent = 'Đã sao chép!';
+                copyCiteBtn.classList.remove('text-slate-600', 'border-slate-200');
+                copyCiteBtn.classList.add('text-emerald-600', 'border-emerald-200', 'bg-emerald-50');
+                copyBtnIcon.setAttribute('data-lucide', 'check');
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    resetCopyButton();
+                }, 2000);
+            });
+        });
+
+        function resetCopyButton() {
+            copyBtnText.textContent = 'Sao chép';
+            copyCiteBtn.className = "absolute top-3 right-3 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-slate-50 dark:hover:bg-slate-950/50 shadow-sm flex items-center space-x-1.5 transition";
+            copyBtnIcon.setAttribute('data-lucide', 'copy');
+            lucide.createIcons();
+        }
+
+        // Search Input listeners
+        searchInput.addEventListener('input', (e) => {
+            activeFilters.search = e.target.value;
+            if (activeFilters.search) {
+                searchClearBtn.classList.remove('hidden');
+            } else {
+                searchClearBtn.classList.add('hidden');
+            }
+            applyFilters();
+        });
+
+        searchClearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            activeFilters.search = '';
+            searchClearBtn.classList.add('hidden');
+            applyFilters();
+        });
+
+        // Sort select listener
+        sortSelect.addEventListener('change', (e) => {
+            activeFilters.sortBy = e.target.value;
+            applyFilters();
+        });
+
+        // View Mode Listeners
+        viewGridBtn.addEventListener('click', () => {
+            activeFilters.viewMode = 'grid';
+            viewGridBtn.className = "p-2 rounded-lg text-brand-600 bg-white dark:bg-slate-900 dark:text-brand-400 shadow-sm";
+            viewListBtn.className = "p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200";
+            renderEntries();
+        });
+
+        viewListBtn.addEventListener('click', () => {
+            activeFilters.viewMode = 'list';
+            viewListBtn.className = "p-2 rounded-lg text-brand-600 bg-white dark:bg-slate-900 dark:text-brand-400 shadow-sm";
+            viewGridBtn.className = "p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200";
+            renderEntries();
+        });
+
+        // Resource Type Filter Listeners
+        const typeFilterButtons = document.querySelectorAll('.type-filter-btn');
+        typeFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                typeFilterButtons.forEach(btn => {
+                    btn.className = "type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition";
+                });
+                button.className = "type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border transition bg-brand-500 text-white border-brand-500";
+                activeFilters.type = button.dataset.type;
+                applyFilters();
+            });
+        });
+
+        // Reset All Filters
+        function resetAllFilters() {
+            searchInput.value = '';
+            activeFilters.search = '';
+            searchClearBtn.classList.add('hidden');
+            
+            // reset source type
+            typeFilterButtons.forEach(btn => {
+                if (btn.dataset.type === 'all') {
+                    btn.className = "type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border transition bg-brand-500 text-white border-brand-500";
+                } else {
+                    btn.className = "type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition";
+                }
+            });
+            activeFilters.type = 'all';
+
+            // reset tags style
+            activeFilters.tags = [];
+            const tagButtons = document.querySelectorAll('.tag-filter-btn');
+            tagButtons.forEach(btn => {
+                btn.className = "tag-filter-btn px-2.5 py-1 text-xs font-medium rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/50 hover:bg-slate-100 dark:hover:bg-slate-950 hover:text-slate-800 dark:hover:text-slate-200 transition flex items-center space-x-1.5";
+                btn.querySelector('span:last-child').className = "px-1.5 py-0.2 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md text-[10px] font-bold";
+            });
+
+            // reset years style
+            activeFilters.years = [];
+            const yearButtons = document.querySelectorAll('.year-filter-btn');
+            yearButtons.forEach(btn => {
+                btn.className = "year-filter-btn px-2.5 py-1 text-xs font-medium rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/50 hover:bg-slate-100 dark:hover:bg-slate-950 hover:text-slate-800 dark:hover:text-slate-200 transition flex items-center space-x-1.5";
+                btn.querySelector('span:last-child').className = "px-1.5 py-0.2 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-md text-[10px] font-bold";
+            });
+
+            applyFilters();
+        }
+
+        resetAllFiltersBtn.addEventListener('click', resetAllFilters);
+        emptyResetBtn.addEventListener('click', resetAllFilters);
+
+        // Load Database on Startup
+        loadDatabase();
+    </script>
+</body>
+</html>
