@@ -7,7 +7,7 @@ import concurrent.futures
 from typing import Any, List, Tuple, Callable, Dict
 from models import AppConfig, Database, Entry, Topic
 from api_arxiv import fetch_arxiv
-from api_github import fetch_github, fetch_batch_repo_stats
+from api_github import fetch_github, fetch_batch_repo_stats, get_github_token
 from api_openrouter import analyze_with_llm
 from readme_renderer import render_readme
 
@@ -56,8 +56,8 @@ def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str
     if not owner_repos:
         return entries, 0
 
-    if not os.environ.get("GITHUB_TOKEN"):
-        logger.warning("GITHUB_TOKEN is not set. Skipping batch GitHub stats update to avoid rate limits.")
+    if not get_github_token():
+        logger.warning("GITHUB_TOKEN and local 'gh' auth are not available. Skipping batch GitHub stats update to avoid rate limits.")
         return entries, 0
 
     logger.info(f"Enriching GitHub statistics in a single batch query for {len(owner_repos)} repositories...")

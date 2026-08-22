@@ -3,10 +3,39 @@ import json
 import urllib.parse
 import urllib.request
 import logging
+import subprocess
+import shutil
 from datetime import datetime
-from typing import List, Dict
+from typing import List, Dict, Optional
 from models import Entry
 logger = logging.getLogger(__name__)
+
+def get_github_token() -> Optional[str]:
+    """
+    Resolves the GitHub token from environment variable 'GITHUB_TOKEN' or local 'gh' CLI.
+    Sets os.environ["GITHUB_TOKEN"] if resolved from gh CLI for current process.
+    """
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        return token
+        
+    if shutil.which("gh"):
+        try:
+            res = subprocess.run(
+                ["gh", "auth", "token"],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            if res.returncode == 0 and res.stdout.strip():
+                token = res.stdout.strip()
+                os.environ["GITHUB_TOKEN"] = token
+                logger.info("Using GitHub authentication token from local 'gh' CLI.")
+                return token
+        except Exception as e:
+            logger.debug(f"Failed to fetch token from gh CLI: {e}")
+            
+    return None
 
 def fetch_github(query: str, start_date: datetime) -> List[Entry]:
     """
@@ -24,7 +53,7 @@ def fetch_github(query: str, start_date: datetime) -> List[Entry]:
     req = urllib.request.Request(url)
     req.add_header("User-Agent", "Automated-Repo-Fetcher")
     
-    github_token = os.environ.get("GITHUB_TOKEN")
+    github_token = get_github_token()
     if github_token:
         req.add_header("Authorization", f"token {github_token}")
         
@@ -66,7 +95,7 @@ def fetch_repo_stats(owner_repo: str) -> dict:
     url = f"https://api.github.com/repos/{urllib.parse.quote(owner_repo)}"
     req = urllib.request.Request(url)
     req.add_header("User-Agent", "Automated-Repo-Fetcher")
-    github_token = os.environ.get("GITHUB_TOKEN")
+    github_token = get_github_token()
     if github_token:
         req.add_header("Authorization", f"token {github_token}")
         
@@ -96,9 +125,9 @@ def fetch_batch_repo_stats(owner_repos: List[str]) -> Dict[str, dict]:
     if not owner_repos:
         return {}
         
-    github_token = os.environ.get("GITHUB_TOKEN")
+    github_token = get_github_token()
     if not github_token:
-        logger.warning("GITHUB_TOKEN is not set. Skipping batch GitHub stats update.")
+        logger.warning("GITHUB_TOKEN and local 'gh' auth are not available. Skipping batch GitHub stats update.")
         return {}
 
     results: Dict[str, dict] = {}
