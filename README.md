@@ -1,6 +1,6 @@
 # Image Dewarping Papers & Repos
 
-This repository is automatically updated weekly with the latest papers and repositories related to **Image Dewarping**.
+This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**.
 
 ## Survey
 - **PINTO0309/doc-dewarping** (2026)

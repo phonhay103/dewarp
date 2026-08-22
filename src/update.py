@@ -204,7 +204,7 @@ def run_pipeline(
     return db, readme_content
 
 def main() -> None:
-    logger.info("Starting weekly update process.")
+    logger.info("Starting monthly update process.")
     start_time = datetime.now()
     
     config = read_json('config.json', {})
@@ -229,7 +229,7 @@ def main() -> None:
     elif env_days and env_days.isdigit():
         fetch_days = int(env_days)
     else:
-        fetch_days = config.get('settings', {}).get('fetch_days', 7)
+        fetch_days = config.get('settings', {}).get('fetch_days', 30)
 
     logger.info(f"Fetching entries for the past {fetch_days} days.")
     start_date = start_time - timedelta(days=fetch_days)

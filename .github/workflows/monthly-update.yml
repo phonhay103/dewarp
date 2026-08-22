@@ -1,14 +1,14 @@
-name: Weekly Update
+name: Monthly Update
 
 on:
   schedule:
-    - cron: '0 23 * * 6' # 23:00 UTC Saturday -> 08:00 JST Sunday
+    - cron: '0 0 1 * *' # At 00:00 UTC on day 1 of every month (09:00 JST on the 1st of every month)
   workflow_dispatch: # Allows manual trigger
     inputs:
       days:
-        description: 'Number of days back to fetch entries (e.g., 7, 30, 365)'
+        description: 'Number of days back to fetch entries (e.g., 30, 90, 365)'
         required: false
-        default: '7'
+        default: '30'
         type: string
       force:
         description: 'Force re-analyzing existing entries (true/false)'
@@ -46,8 +46,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: update weekly papers and repos"
-          title: "Weekly Update: New Papers & Repositories"
+          commit-message: "chore: update monthly papers and repos"
+          title: "Monthly Update: New Papers & Repositories"
           body: "Automated PR to update README.md with the latest papers and repositories."
-          branch: "weekly-update"
+          branch: "monthly-update"
           base: "main"

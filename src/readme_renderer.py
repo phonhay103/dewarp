@@ -15,7 +15,7 @@ def render_readme(config: Dict[str, Any], db: Dict[str, Any]) -> str:
     tags = topic.get("tags", topic.get("categories", ["Uncategorized"]))
     
     md = f"# {topic['name']} Papers & Repos\n\n"
-    md += f"This repository is automatically updated weekly with the latest papers and repositories related to **{topic['name']}**.\n\n"
+    md += f"This repository is automatically updated monthly with the latest papers and repositories related to **{topic['name']}**.\n\n"
 
     entries = db.get("entries", [])
     
