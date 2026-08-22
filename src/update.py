@@ -41,11 +41,11 @@ def write_file(filepath: str, content: str) -> None:
         f.write(content)
 
 
-def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str]], Dict[str, dict]]) -> List[Entry]:
+def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str]], Dict[str, dict]]) -> Tuple[List[Entry], int]:
     """Enriches entries containing a GitHub repository URL with stars, forks, and last commit timestamp in a single batch query."""
     github_entries = [e for e in entries if e.get('code_url') and 'github.com/' in e['code_url']]
     if not github_entries:
-        return entries
+        return entries, 0
 
     owner_repos = []
     for e in github_entries:
@@ -54,17 +54,17 @@ def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str
             owner_repos.append(f"{parts[0]}/{parts[1]}")
 
     if not owner_repos:
-        return entries
+        return entries, 0
 
     if not os.environ.get("GITHUB_TOKEN"):
         logger.warning("GITHUB_TOKEN is not set. Skipping batch GitHub stats update to avoid rate limits.")
-        return entries
+        return entries, 0
 
     logger.info(f"Enriching GitHub statistics in a single batch query for {len(owner_repos)} repositories...")
     stats_map = fetch_batch_fn(owner_repos)
 
     if not stats_map:
-        return entries
+        return entries, 0
 
     entry_map = {e['id']: e for e in entries}
     for e in github_entries:
@@ -74,7 +74,7 @@ def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str
             if owner_repo in stats_map:
                 entry_map[e['id']] = {**e, **stats_map[owner_repo]}
 
-    return list(entry_map.values())
+    return list(entry_map.values()), len(stats_map)
 
 def run_pipeline(
     fetch_papers: Callable[[str, datetime], List[Entry]],
@@ -86,7 +86,7 @@ def run_pipeline(
     start_date: datetime,
     force: bool = False,
     reanalyze_existing: bool = False
-) -> Tuple[Database, str]:
+) -> Tuple[Database, str, Dict[str, Any]]:
     """
     Executes the main automated update pipeline functionally.
     
@@ -177,10 +177,18 @@ def run_pipeline(
         item_dict.pop('category', None)
         return {**item_dict, 'tags': valid_tags, 'summary': summary, 'description': None} # type: ignore
 
+    llm_success = 0
+    llm_error = 0
     if items_to_process:
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
             processed_entries = list(executor.map(process_item, items_to_process))
             
+        for pe in processed_entries:
+            if pe.get('summary') and not pe['summary'].startswith('Error'):
+                llm_success += 1
+            else:
+                llm_error += 1
+
         # Clean out temporary fields
         processed_entries = [{k: v for k, v in e.items() if v is not None} for e in processed_entries]
         
@@ -198,10 +206,22 @@ def run_pipeline(
             del e['category']
 
     # Enrich all entries with GitHub statistics (stars, forks, last commit) in a single batch query
-    db['entries'] = enrich_github_stats(db['entries'], fetch_batch_repo_stats)
+    db['entries'], enriched_count = enrich_github_stats(db['entries'], fetch_batch_repo_stats)
         
     readme_content = render_md(config, db)
-    return db, readme_content
+
+    stats_summary = {
+        "arxiv_fetched": len(papers),
+        "github_fetched": len(repos),
+        "total_fetched": len(papers) + len(repos),
+        "items_analyzed": len(items_to_process),
+        "llm_success": llm_success,
+        "llm_error": llm_error,
+        "repos_enriched": enriched_count,
+        "total_db_entries": len(db['entries'])
+    }
+
+    return db, readme_content, stats_summary
 
 def main() -> None:
     logger.info("Starting monthly update process.")
@@ -234,7 +254,7 @@ def main() -> None:
     logger.info(f"Fetching entries for the past {fetch_days} days.")
     start_date = start_time - timedelta(days=fetch_days)
     
-    updated_db, readme_content = run_pipeline(
+    updated_db, readme_content, stats_summary = run_pipeline(
         fetch_papers=fetch_arxiv,
         fetch_repos=fetch_github,
         analyze_item=analyze_with_llm,
@@ -254,7 +274,24 @@ def main() -> None:
     save_readme(readme_content)
     
     elapsed = (datetime.now() - start_time).total_seconds()
-    logger.info(f"Done! Pipeline completed in {elapsed:.2f} seconds.")
+
+    summary_msg = (
+        "\n" + "=" * 50 + "\n"
+        "              EXECUTION SUMMARY\n"
+        "==================================================\n"
+        f"- Fetch Interval         : Past {fetch_days} days\n"
+        f"- arXiv Papers Fetched   : {stats_summary['arxiv_fetched']}\n"
+        f"- GitHub Repos Fetched   : {stats_summary['github_fetched']}\n"
+        f"- Total Items Fetched    : {stats_summary['total_fetched']}\n"
+        f"- Items Analyzed (LLM)   : {stats_summary['items_analyzed']}\n"
+        f"- LLM Analysis Success   : {stats_summary['llm_success']}\n"
+        f"- LLM Analysis Failed    : {stats_summary['llm_error']}\n"
+        f"- Repos Enriched (Stats) : {stats_summary['repos_enriched']}\n"
+        f"- Total Database Entries : {stats_summary['total_db_entries']}\n"
+        f"- Total Execution Time   : {elapsed:.2f} seconds\n"
+        "=================================================="
+    )
+    logger.info(summary_msg)
 
 if __name__ == "__main__":
     main()
