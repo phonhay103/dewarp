@@ -3,12 +3,6 @@
 This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**.
 
 ## Survey
-- **PINTO0309/doc-dewarping** (2026)
-  - Code: https://github.com/PINTO0309/doc-dewarping
-  - Tags: Tool, Survey, Dataset
-  - Stars: 3 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
-  - A non‑machine‑learning method corrects geometric distortions in document images by leveraging extracted text lines and line segments to dewarp them.
-
 - **bsiku3622/image-scanning-pipeline** (2026)
   - Code: https://github.com/bsiku3622/image-scanning-pipeline
   - Tags: Survey, Dataset
@@ -138,9 +132,9 @@ This repository is automatically updated monthly with the latest papers and repo
 
 - **PINTO0309/doc-dewarping** (2026)
   - Code: https://github.com/PINTO0309/doc-dewarping
-  - Tags: Tool, Survey, Dataset
+  - Tags: Dataset
   - Stars: 3 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
-  - A non‑machine‑learning method corrects geometric distortions in document images by leveraging extracted text lines and line segments to dewarp them.
+  - A sample dataset description for image analysis tasks.
 
 - **bsiku3622/image-scanning-pipeline** (2026)
   - Code: https://github.com/bsiku3622/image-scanning-pipeline
@@ -384,12 +378,6 @@ This repository is automatically updated monthly with the latest papers and repo
   - The paper presents a global optimization approach to correct geometric distortions in document images, improving dewarping accuracy through systematic image processing techniques.
 
 ## Tool
-- **PINTO0309/doc-dewarping** (2026)
-  - Code: https://github.com/PINTO0309/doc-dewarping
-  - Tags: Tool, Survey, Dataset
-  - Stars: 3 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
-  - A non‑machine‑learning method corrects geometric distortions in document images by leveraging extracted text lines and line segments to dewarp them.
-
 - **TADoc: Robust Time-Aware Document Image Dewarping** (2025)
   - Paper: http://arxiv.org/abs/2508.06988v1
   - Tags: Tool, Survey, Method

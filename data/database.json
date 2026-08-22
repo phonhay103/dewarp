@@ -678,15 +678,13 @@
       "date": "2026-07-19",
       "year": "2026",
       "authors": "PINTO0309",
-      "summary": "A non‑machine‑learning method corrects geometric distortions in document images by leveraging extracted text lines and line segments to dewarp them.",
       "stars": 3,
       "forks": 0,
       "last_commit": "2026-07-19 11:56:08 UTC",
       "tags": [
-        "Tool",
-        "Survey",
         "Dataset"
-      ]
+      ],
+      "summary": "A sample dataset description for image analysis tasks."
     },
     {
       "id": "155342320",
