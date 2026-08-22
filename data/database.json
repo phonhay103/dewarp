@@ -781,14 +781,13 @@
       "date": "2026-07-25",
       "year": "2026",
       "authors": "zz1231me",
-      "summary": "A Python repository that dewarps phone‑taken document images into scanner‑like results via auto‑detection, deskewing, shadow and glare removal, with optional DL backends and CLI/web UI access.",
       "stars": 0,
       "forks": 0,
       "last_commit": "2026-07-25 07:58:33 UTC",
       "tags": [
-        "Dataset",
-        "Uncategorized"
-      ]
+        "Dataset"
+      ],
+      "summary": "The repository provides a CLI, web UI, and Python library that automatically detects, deskews, dewarps, and cleans scanned document images—handling tasks such as shadow removal, glare reduction, and optional deep‑learning backends to produce scanner‑quality documents."
     },
     {
       "id": "1301305539",
