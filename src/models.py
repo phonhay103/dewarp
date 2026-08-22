@@ -25,8 +25,10 @@ class Topic(TypedDict):
     queries: TopicQuery
     tags: List[str]
 
-class LlmConfig(TypedDict):
+class LlmConfig(TypedDict, total=False):
     model: str
+    fallback_models: List[str]
+    models: List[str]
     system_prompt: str
     user_prompt_template: str
 class Settings(TypedDict, total=False):

@@ -59,29 +59,48 @@ def analyze_with_llm(
         "Content-Type": "application/json"
     }
     
+    llm_cfg = config.get('llm', {})
+    models_to_try = []
+    
+    if 'models' in llm_cfg and isinstance(llm_cfg['models'], list):
+        models_to_try.extend(llm_cfg['models'])
+    if 'model' in llm_cfg and llm_cfg['model'] not in models_to_try:
+        models_to_try.append(llm_cfg['model'])
+    if 'fallback_models' in llm_cfg and isinstance(llm_cfg['fallback_models'], list):
+        for m in llm_cfg['fallback_models']:
+            if m not in models_to_try:
+                models_to_try.append(m)
+                
+    if not models_to_try:
+        models_to_try = ["nvidia/nemotron-3-nano-30b-a3b:free"]
+
     response_format = build_response_format(name=schema_name, schema=schema)
     
-    data = {
-        "model": config['llm']['model'],
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ],
-        "response_format": response_format
-    }
-    
-    req = urllib.request.Request(
-        url, 
-        data=json.dumps(data).encode('utf-8'), 
-        headers=headers
-    )
-    
-    try:
-        with urllib.request.urlopen(req) as response:
-            resp_data = json.loads(response.read().decode('utf-8'))
-            content = resp_data['choices'][0]['message']['content']
-            return json.loads(content)
-            
-    except Exception as e:
-        logger.error(f"Error analyzing item '{item['title']}': {e}")
-        return {}
+    for model in models_to_try:
+        data = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            "response_format": response_format
+        }
+        
+        req = urllib.request.Request(
+            url, 
+            data=json.dumps(data).encode('utf-8'), 
+            headers=headers
+        )
+        
+        try:
+            with urllib.request.urlopen(req) as response:
+                resp_data = json.loads(response.read().decode('utf-8'))
+                content = resp_data['choices'][0]['message']['content']
+                parsed = json.loads(content)
+                if parsed:
+                    return parsed
+        except Exception as e:
+            logger.warning(f"Model '{model}' failed for item '{item['title']}': {e}. Trying fallback if available...")
+
+    logger.error(f"All models failed for item '{item['title']}'.")
+    return {}
