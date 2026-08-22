@@ -167,11 +167,11 @@ def run_pipeline(
         res_tags = result.get('tags', [])
         if isinstance(res_tags, str):
             res_tags = [res_tags]
-        valid_tags = [t for t in res_tags if t in allowed_tags]
+        valid_tags = list(dict.fromkeys(t for t in res_tags if t in allowed_tags))
         if not valid_tags:
             valid_tags = ['Uncategorized']
             
-        summary = result.get('summary', 'Error generating summary.')
+        summary = str(result.get('summary', 'Error generating summary.')).strip().rstrip('}').strip()
         
         item_dict = dict(item)
         item_dict.pop('category', None)
