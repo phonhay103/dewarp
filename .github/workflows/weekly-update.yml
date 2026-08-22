@@ -1,0 +1,53 @@
+name: Weekly Update
+
+on:
+  schedule:
+    - cron: '0 23 * * 6' # 23:00 UTC Saturday -> 08:00 JST Sunday
+  workflow_dispatch: # Allows manual trigger
+    inputs:
+      days:
+        description: 'Number of days back to fetch entries (e.g., 7, 30, 365)'
+        required: false
+        default: '7'
+        type: string
+      force:
+        description: 'Force re-analyzing existing entries (true/false)'
+        required: false
+        default: 'false'
+        type: boolean
+      reanalyze_existing:
+        description: 'Re-analyze all existing entries without fetching new ones (true/false)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Run Update Script
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FETCH_DAYS: ${{ github.event.inputs.days }}
+          FORCE_UPDATE: ${{ github.event.inputs.force }}
+          REANALYZE_EXISTING: ${{ github.event.inputs.reanalyze_existing }}
+        run: python src/update.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update weekly papers and repos"
+          title: "Weekly Update: New Papers & Repositories"
+          body: "Automated PR to update README.md with the latest papers and repositories."
+          branch: "weekly-update"
+          base: "main"

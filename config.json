@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "fetch_days": 7
+  },
+  "topics": [
+    {
+      "name": "Image Dewarping",
+      "queries": {
+        "arxiv": "ti:\"image dewarping\" OR abs:\"image dewarping\" OR ti:\"document dewarping\" OR abs:\"document dewarping\"",
+        "github": "image dewarping OR document dewarping"
+      },
+      "categories": [
+        "Survey",
+        "Method",
+        "Dataset",
+        "Tool",
+        "Uncategorized"
+      ]
+    }
+  ],
+  "llm": {
+    "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+    "system_prompt": "You are a highly precise AI assistant specialized in analyzing research papers and code repositories. Categorize the given item into exactly ONE of the provided categories based on its content, and provide a very brief 1-2 sentence summary.",
+    "user_prompt_template": "Topic: {topic_name}\nTitle: {title}\nDescription/Abstract: {description}"
+  }
+}
