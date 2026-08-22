@@ -132,9 +132,9 @@ This repository is automatically updated monthly with the latest papers and repo
 
 - **zz1231me/scan** (2026)
   - Code: https://github.com/zz1231me/scan
-  - Tags: Dataset, Uncategorized
+  - Tags: Dataset
   - Stars: 0 | Forks: 0 | Last Commit: 2026-07-25 07:58:33 UTC
-  - A Python repository that dewarps phone‑taken document images into scanner‑like results via auto‑detection, deskewing, shadow and glare removal, with optional DL backends and CLI/web UI access.
+  - The repository provides a CLI, web UI, and Python library that automatically detects, deskews, dewarps, and cleans scanned document images—handling tasks such as shadow removal, glare reduction, and optional deep‑learning backends to produce scanner‑quality documents.
 
 - **PINTO0309/doc-dewarping** (2026)
   - Code: https://github.com/PINTO0309/doc-dewarping
@@ -425,12 +425,6 @@ This repository is automatically updated monthly with the latest papers and repo
   - This repository provides code for correcting geometric distortions in scanned document images, restoring them to a flat, undistorted state through image dewarping techniques specifically designed for document photography artifacts.
 
 ## Uncategorized
-- **zz1231me/scan** (2026)
-  - Code: https://github.com/zz1231me/scan
-  - Tags: Dataset, Uncategorized
-  - Stars: 0 | Forks: 0 | Last Commit: 2026-07-25 07:58:33 UTC
-  - A Python repository that dewarps phone‑taken document images into scanner‑like results via auto‑detection, deskewing, shadow and glare removal, with optional DL backends and CLI/web UI access.
-
 - **ZZZHANG-jx/Recommendations-Document-Image-Processing** (2023)
   - Code: https://github.com/ZZZHANG-jx/Recommendations-Document-Image-Processing
   - Tags: Uncategorized
