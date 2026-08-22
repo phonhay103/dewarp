@@ -17,6 +17,7 @@ def render_readme(config: Dict[str, Any], db: Dict[str, Any]) -> str:
     md = f"# {topic['name']} Papers & Repos\n\n"
     md += f"[![Interactive Search & Filter](https://img.shields.io/badge/Interactive_Search_&_Filter-Live_on_GitHub_Pages-6374ff?style=for-the-badge&logo=github&logoColor=white)](https://nhay.github.io/dewarp/)\n\n"
     md += f"This repository is automatically updated monthly with the latest papers and repositories related to **{topic['name']}**.\n\n"
+    md += f"💡 **Tip:** Reading a long README.md can be difficult. You can use the [**Interactive Dewarping Hub**](https://nhay.github.io/dewarp/) to easily search, filter by tags, sort by stars, and auto-generate BibTeX citation code with just one click!\n\n"
 
     entries = db.get("entries", [])
     

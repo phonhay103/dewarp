@@ -4,7 +4,7 @@
 
 This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**. 
 
-💡 **Mẹo:** Việc đọc file README.md dài có thể gặp khó khăn. Bạn có thể sử dụng [**Interactive Dewarping Hub**](https://nhay.github.io/dewarp/) để dễ dàng tìm kiếm, lọc theo tag, sắp xếp theo số sao (stars) và tự động sinh mã trích dẫn BibTeX chỉ với một cú nhấp chuột!
+💡 **Tip:** Reading a long README.md can be difficult. You can use the [**Interactive Dewarping Hub**](https://nhay.github.io/dewarp/) to easily search, filter by tags, sort by stars, and auto-generate BibTeX citation code with just one click!
 
 ## Survey
 - **bsiku3622/image-scanning-pipeline** (2026)

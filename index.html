@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,10 +109,10 @@
                     ✨ Automated Monthly Updates
                 </span>
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
-                    Tìm kiếm & Lọc tài liệu Image Dewarping dễ dàng hơn
+                    Search & Filter Image Dewarping Documents with Ease
                 </h2>
                 <p class="text-base sm:text-lg text-brand-100 font-medium max-w-2xl">
-                    Trang web tương tác thu thập, phân tích và phân loại tự động các công trình nghiên cứu cùng mã nguồn mới nhất về căn chỉnh, làm phẳng ảnh tài liệu bị cong, méo.
+                    An interactive portal to automatically discover, analyze, and categorize the latest papers and repositories on flattening and rectifying distorted document images.
                 </p>
             </div>
         </div>
@@ -125,7 +125,7 @@
                     <i data-lucide="book-open" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tổng Tài Liệu</p>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Documents</p>
                     <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statTotal">0</h3>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                     <i data-lucide="star" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tổng Stars</p>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Stars</p>
                     <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statStars">0</h3>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                     <i data-lucide="code-2" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Có Mã Nguồn</p>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">With Code</p>
                     <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white" id="statWithCode">0</h3>
                 </div>
             </div>
@@ -174,7 +174,7 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
                         <i data-lucide="search" class="w-5 h-5"></i>
                     </span>
-                    <input type="text" id="searchInput" placeholder="Tìm kiếm theo tiêu đề, tóm tắt, tác giả hoặc URL..." 
+                    <input type="text" id="searchInput" placeholder="Search by title, summary, authors, or URL..." 
                            class="w-full pl-11 pr-10 py-3 bg-slate-50 hover:bg-slate-100/70 focus:bg-white dark:bg-slate-950 dark:hover:bg-slate-950/80 dark:focus:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-brand-500 dark:focus:border-brand-500 rounded-2xl text-sm focus:outline-none focus:ring-4 focus:ring-brand-500/10 dark:focus:ring-brand-500/5 text-slate-800 dark:text-slate-100 transition placeholder-slate-400 dark:placeholder-slate-500">
                     <button id="searchClearBtn" class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden">
                         <i data-lucide="x" class="w-4 h-4"></i>
@@ -185,23 +185,23 @@
                 <div class="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-end">
                     <!-- Sort Dropdown -->
                     <div class="flex items-center space-x-2">
-                        <label for="sortSelect" class="text-xs font-semibold text-slate-500 uppercase tracking-wider hidden lg:block">Sắp xếp:</label>
+                        <label for="sortSelect" class="text-xs font-semibold text-slate-500 uppercase tracking-wider hidden lg:block">Sort by:</label>
                         <select id="sortSelect" class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm font-medium rounded-xl py-2 pl-3 pr-8 focus:outline-none focus:ring-2 focus:ring-brand-500/20 text-slate-700 dark:text-slate-300 cursor-pointer">
-                            <option value="stars-desc">Stars (Nhiều nhất)</option>
-                            <option value="year-desc">Năm (Mới nhất)</option>
-                            <option value="year-asc">Năm (Cũ nhất)</option>
-                            <option value="forks-desc">Forks (Nhiều nhất)</option>
-                            <option value="commit-desc">Commit mới nhất</option>
-                            <option value="title-asc">Tiêu đề (A-Z)</option>
+                            <option value="stars-desc">Stars (Highest)</option>
+                            <option value="year-desc">Year (Newest)</option>
+                            <option value="year-asc">Year (Oldest)</option>
+                            <option value="forks-desc">Forks (Highest)</option>
+                            <option value="commit-desc">Latest Commit</option>
+                            <option value="title-asc">Title (A-Z)</option>
                         </select>
                     </div>
 
                     <!-- View Mode Toggle Buttons -->
                     <div class="flex items-center bg-slate-100 dark:bg-slate-950 p-1 border border-slate-200 dark:border-slate-800 rounded-xl">
-                        <button id="viewGridBtn" class="p-2 rounded-lg text-brand-600 bg-white dark:bg-slate-900 dark:text-brand-400 shadow-sm" title="Chế độ lưới (Card)">
+                        <button id="viewGridBtn" class="p-2 rounded-lg text-brand-600 bg-white dark:bg-slate-900 dark:text-brand-400 shadow-sm" title="Grid View (Card)">
                             <i data-lucide="layout-grid" class="w-4 h-4"></i>
                         </button>
-                        <button id="viewListBtn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200" title="Chế độ danh sách (Bảng)">
+                        <button id="viewListBtn" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200" title="List View (Table)">
                             <i data-lucide="list" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -214,32 +214,32 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Filter by Source Type -->
                 <div class="space-y-2">
-                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Loại Tài Liệu</span>
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Document Type</span>
                     <div class="flex flex-wrap gap-2">
-                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border transition bg-brand-500 text-white border-brand-500" data-type="all">Tất cả</button>
-                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition" data-type="with-code">Có Code Github</button>
-                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition" data-type="paper-only">Chỉ có Paper</button>
+                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border transition bg-brand-500 text-white border-brand-500" data-type="all">All</button>
+                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition" data-type="with-code">With GitHub Code</button>
+                        <button class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950 transition" data-type="paper-only">Paper Only</button>
                     </div>
                 </div>
 
                 <!-- Filter by Tag (Extracted dynamically) -->
                 <div class="space-y-2">
-                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Phân Loại (Tags)</span>
+                    <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Categorization (Tags)</span>
                     <div class="flex flex-wrap gap-1.5" id="tagsFilterContainer">
                         <!-- Loading placeholder, will be replaced by script -->
-                        <span class="text-xs text-slate-400">Đang tải tag...</span>
+                        <span class="text-xs text-slate-400">Loading tags...</span>
                     </div>
                 </div>
 
                 <!-- Filter by Year -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center">
-                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Năm Xuất Bản</span>
-                        <button id="resetYearBtn" class="text-xs text-brand-600 dark:text-brand-400 hover:underline font-medium hidden">Đặt lại</button>
+                        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Publication Year</span>
+                        <button id="resetYearBtn" class="text-xs text-brand-600 dark:text-brand-400 hover:underline font-medium hidden">Reset</button>
                     </div>
                     <div class="flex flex-wrap gap-1.5" id="yearsFilterContainer">
                         <!-- Will be dynamically filled -->
-                        <span class="text-xs text-slate-400">Đang tải năm...</span>
+                        <span class="text-xs text-slate-400">Loading years...</span>
                     </div>
                 </div>
             </div>
@@ -247,11 +247,11 @@
             <!-- Active Filters Info and Reset Button -->
             <div id="activeFiltersContainer" class="hidden flex items-center justify-between bg-brand-50/50 dark:bg-brand-950/10 border border-brand-100 dark:border-brand-900/30 rounded-2xl px-4 py-3 text-sm">
                 <div class="flex items-center space-x-2 text-slate-600 dark:text-slate-400 flex-wrap gap-y-1">
-                    <span class="font-semibold text-brand-600 dark:text-brand-400">Đang áp dụng:</span>
+                    <span class="font-semibold text-brand-600 dark:text-brand-400">Active Filters:</span>
                     <span id="activeFiltersText" class="text-xs"></span>
                 </div>
                 <button id="resetAllFiltersBtn" class="text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition shrink-0 ml-4">
-                    Xóa tất cả bộ lọc
+                    Reset all filters
                 </button>
             </div>
         </div>
@@ -259,8 +259,8 @@
         <!-- Filter Count & Results Area -->
         <div class="space-y-4">
             <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
-                <span>Hiển thị <strong id="resultsCount" class="text-slate-800 dark:text-white font-bold">0</strong> trên <strong id="totalCount" class="font-bold">0</strong> tài liệu</span>
-                <span id="searchStatus" class="italic animate-pulse hidden">Đang tìm kiếm...</span>
+                <span>Showing <strong id="resultsCount" class="text-slate-800 dark:text-white font-bold">0</strong> of <strong id="totalCount" class="font-bold">0</strong> documents</span>
+                <span id="searchStatus" class="italic animate-pulse hidden">Searching...</span>
             </div>
 
             <!-- Card Grid View (Active by default) -->
@@ -274,11 +274,11 @@
                     <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
                         <thead class="bg-slate-50 dark:bg-slate-950">
                             <tr>
-                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12 text-center">Năm</th>
-                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tiêu đề / Tác giả / Mô tả</th>
-                                <th scope="col" class="px-6 py-4 class text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Phân loại</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12 text-center">Year</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Title / Authors / Description</th>
+                                <th scope="col" class="px-6 py-4 class text-left text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Categorization</th>
                                 <th scope="col" class="px-6 py-4 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-20">Stars</th>
-                                <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-40">Liên kết / Trích dẫn</th>
+                                <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-40">Links / Citation</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-200 dark:divide-slate-800" id="tableBody">
@@ -294,11 +294,11 @@
                     <i data-lucide="search-x" class="w-8 h-8"></i>
                 </div>
                 <div class="space-y-1">
-                    <h4 class="text-lg font-bold text-slate-900 dark:text-white">Không tìm thấy tài liệu phù hợp</h4>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">Vui lòng thử đổi từ khóa tìm kiếm hoặc xóa bớt các bộ lọc đang chọn.</p>
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-white">No matching documents found</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">Please try changing your search keywords or resetting the active filters.</p>
                 </div>
                 <button id="emptyResetBtn" class="px-4 py-2 text-sm font-semibold bg-brand-500 hover:bg-brand-600 text-white rounded-xl transition">
-                    Xóa tất cả bộ lọc
+                    Reset all filters
                 </button>
             </div>
         </div>
@@ -310,10 +310,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="text-center md:text-left space-y-1">
                 <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">
-                    &copy; <span id="currentYear"></span> Image Dewarping Hub. Dự án mã nguồn mở.
+                    &copy; <span id="currentYear"></span> Image Dewarping Hub. Open-source project.
                 </p>
                 <p class="text-xs text-slate-400 dark:text-slate-500">
-                    Cập nhật tự động định kỳ qua GitHub Actions sử dụng mô hình LLM.
+                    Automatically updated periodically via GitHub Actions powered by LLM models.
                 </p>
             </div>
             <div class="flex items-center space-x-4">
@@ -340,9 +340,9 @@
                 <div class="space-y-1">
                     <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                         <i data-lucide="quote" class="text-brand-500 w-5 h-5"></i>
-                        Trích dẫn BibTeX
+                        BibTeX Citation
                     </h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Sao chép cấu trúc trích dẫn sau để sử dụng trong bài viết khoa học (LaTeX/BibTeX) của bạn.</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Copy the following citation format to use in your scientific publications (LaTeX/BibTeX).</p>
                 </div>
                 <button id="closeCiteModalBtn" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-950/80 transition">
                     <i data-lucide="x" class="w-5 h-5"></i>
@@ -350,7 +350,7 @@
             </div>
 
             <div class="space-y-4">
-                <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200" id="citePaperTitle">Tên bài báo...</h4>
+                <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200" id="citePaperTitle">Paper title...</h4>
                 
                 <div class="relative group">
                     <pre class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-xs font-mono text-slate-700 dark:text-slate-300 overflow-x-auto max-h-60" id="bibtexContent">
@@ -358,13 +358,13 @@
                     <!-- Copy Button Inside Pre -->
                     <button id="copyCiteBtn" class="absolute top-3 right-3 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-slate-50 dark:hover:bg-slate-950/50 shadow-sm flex items-center space-x-1.5 transition">
                         <i data-lucide="copy" class="w-3.5 h-3.5" id="copyBtnIcon"></i>
-                        <span id="copyBtnText">Sao chép</span>
+                        <span id="copyBtnText">Copy</span>
                     </button>
                 </div>
                 
                 <div class="flex justify-end pt-2">
                     <button id="closeCiteModalBtnBottom" class="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-950 transition">
-                        Đóng lại
+                        Close
                     </button>
                 </div>
             </div>
@@ -457,7 +457,7 @@
             try {
                 const response = await fetch('./data/database.json');
                 if (!response.ok) {
-                    throw new Error('Không thể tải tệp data/database.json');
+                    throw new Error('Failed to load data/database.json');
                 }
                 const data = await response.json();
                 allEntries = data.entries || [];
@@ -475,9 +475,9 @@
                         <div class="p-3 bg-red-100 dark:bg-red-950 text-red-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
                             <i data-lucide="alert-triangle" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-red-900 dark:text-red-200">Không tìm thấy hoặc không thể nạp tệp dữ liệu</h4>
+                        <h4 class="text-lg font-bold text-red-900 dark:text-red-200">Database file not found or failed to load</h4>
                         <p class="text-sm text-red-700 dark:text-red-400 max-w-md mx-auto">
-                            Hãy chắc chắn rằng file <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded font-mono">data/database.json</code> đang nằm đúng vị trí và có dữ liệu hợp lệ.
+                            Please make sure that <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded font-mono">data/database.json</code> is present and contains valid JSON.
                         </p>
                     </div>
                 `;
@@ -741,12 +741,12 @@
                 const commitHtml = (entry.code_url && entry.last_commit) ? `
                     <div class="flex items-center space-x-1 text-[11px] text-slate-400 dark:text-slate-500">
                         <i data-lucide="clock" class="w-3 h-3"></i>
-                        <span>Commit cuối: ${entry.last_commit.split(' ')[0]}</span>
+                        <span>Last commit: ${entry.last_commit.split(' ')[0]}</span>
                     </div>
                 ` : '';
 
                 // Clean title if has (Year) at the end
-                let displayTitle = entry.title || 'Không có tiêu đề';
+                let displayTitle = entry.title || 'No title available';
                 
                 card.innerHTML = `
                     <div class="space-y-3">
@@ -766,7 +766,7 @@
                         </div>
 
                         <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed pt-1">
-                            ${entry.summary || 'Chưa có bản mô tả tóm tắt cho tài liệu này.'}
+                            ${entry.summary || 'No summary description available for this document.'}
                         </p>
                     </div>
 
@@ -774,16 +774,16 @@
                         ${commitHtml || '<div></div>'}
                         
                         <div class="flex items-center space-x-2">
-                            <button onclick="generateCitation('${entry.id}')" class="p-2 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="Trích dẫn BibTeX">
+                            <button onclick="generateCitation('${entry.id}')" class="p-2 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="BibTeX Citation">
                                 <i data-lucide="quote" class="w-4 h-4"></i>
                             </button>
                             ${entry.paper_url ? `
-                                <a href="${entry.paper_url}" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="Xem Paper">
+                                <a href="${entry.paper_url}" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="View Paper">
                                     <i data-lucide="file-text" class="w-4 h-4"></i>
                                 </a>
                             ` : ''}
                             ${entry.code_url ? `
-                                <a href="${entry.code_url}" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-github hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="Xem GitHub">
+                                <a href="${entry.code_url}" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-400 hover:text-github hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition" title="View GitHub">
                                     <i data-lucide="github" class="w-4 h-4"></i>
                                 </a>
                             ` : ''}
@@ -828,7 +828,7 @@
                                 ${entry.title}
                             </div>
                             <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
-                                ${entry.summary || 'Không có tóm tắt.'}
+                                ${entry.summary || 'No summary available.'}
                             </p>
                         </div>
                     </td>
@@ -842,7 +842,7 @@
                     </td>
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end space-x-2">
-                            <button onclick="generateCitation('${entry.id}')" class="p-1.5 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition" title="Trích dẫn">
+                            <button onclick="generateCitation('${entry.id}')" class="p-1.5 text-slate-400 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition" title="Citation">
                                 <i data-lucide="quote" class="w-3.5 h-3.5"></i>
                             </button>
                             ${entry.paper_url ? `
@@ -868,8 +868,8 @@
             let activeFiltersList = [];
 
             if (activeFilters.type !== 'all') {
-                const label = activeFilters.type === 'with-code' ? 'Có Code Github' : 'Chỉ có Paper';
-                activeFiltersList.push(`loại "${label}"`);
+                const label = activeFilters.type === 'with-code' ? 'With GitHub Code' : 'Paper Only';
+                activeFiltersList.push(`type "${label}"`);
             }
 
             if (activeFilters.tags.length > 0) {
@@ -877,7 +877,7 @@
             }
 
             if (activeFilters.years.length > 0) {
-                activeFiltersList.push(`năm: [${activeFilters.years.join(', ')}]`);
+                activeFiltersList.push(`years: [${activeFilters.years.join(', ')}]`);
             }
 
             if (activeFiltersList.length > 0) {
@@ -911,14 +911,14 @@
             let htmlDesc = `
                 <div class="space-y-4 text-slate-700 dark:text-slate-300 font-sans text-sm">
                     <div>
-                        <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Mô tả tóm tắt</h5>
-                        <p class="leading-relaxed bg-slate-50 dark:bg-slate-950 p-4 border border-slate-200 dark:border-slate-800 rounded-2xl">${entry.summary || 'Chưa có bản tóm tắt.'}</p>
+                        <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Summary Description</h5>
+                        <p class="leading-relaxed bg-slate-50 dark:bg-slate-950 p-4 border border-slate-200 dark:border-slate-800 rounded-2xl">${entry.summary || 'No summary available.'}</p>
                     </div>
                     
                     <div class="grid grid-cols-2 gap-4">
                         ${entry.code_url ? `
                         <div>
-                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Thống kê GitHub</h5>
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">GitHub Statistics</h5>
                             <div class="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-around">
                                 <span class="flex items-center gap-1 font-semibold text-xs"><i data-lucide="star" class="w-4 h-4 text-amber-400"></i> ${entry.stars || 0}</span>
                                 <span class="flex items-center gap-1 font-semibold text-xs"><i data-lucide="git-fork" class="w-4 h-4 text-slate-400"></i> ${entry.forks || 0}</span>
@@ -926,7 +926,7 @@
                         </div>` : ''}
                         
                         <div>
-                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Phân loại (Tags)</h5>
+                            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Categorization (Tags)</h5>
                             <div class="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl flex flex-wrap gap-1">
                                 ${entry.tags ? entry.tags.map(t => `<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300">${t}</span>`).join('') : '-'}
                             </div>
@@ -934,8 +934,8 @@
                     </div>
 
                     <div class="flex items-center gap-2 justify-end pt-4">
-                        ${entry.paper_url ? `<a href="${entry.paper_url}" target="_blank" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs font-bold rounded-xl flex items-center gap-1.5 transition"><i data-lucide="file-text" class="w-4 h-4"></i> Xem Paper</a>` : ''}
-                        ${entry.code_url ? `<a href="${entry.code_url}" target="_blank" class="px-4 py-2 bg-slate-900 hover:bg-black dark:bg-brand-500 dark:hover:bg-brand-600 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition"><i data-lucide="github" class="w-4 h-4"></i> Link GitHub</a>` : ''}
+                        ${entry.paper_url ? `<a href="${entry.paper_url}" target="_blank" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs font-bold rounded-xl flex items-center gap-1.5 transition"><i data-lucide="file-text" class="w-4 h-4"></i> View Paper</a>` : ''}
+                        ${entry.code_url ? `<a href="${entry.code_url}" target="_blank" class="px-4 py-2 bg-slate-900 hover:bg-black dark:bg-brand-500 dark:hover:bg-brand-600 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition"><i data-lucide="github" class="w-4 h-4"></i> View Code</a>` : ''}
                     </div>
                 </div>
             `;
@@ -1039,7 +1039,7 @@
         copyCiteBtn.addEventListener('click', () => {
             const codeText = document.getElementById('bibtexContent').textContent;
             navigator.clipboard.writeText(codeText).then(() => {
-                copyBtnText.textContent = 'Đã sao chép!';
+                copyBtnText.textContent = 'Copied!';
                 copyCiteBtn.classList.remove('text-slate-600', 'border-slate-200');
                 copyCiteBtn.classList.add('text-emerald-600', 'border-emerald-200', 'bg-emerald-50');
                 copyBtnIcon.setAttribute('data-lucide', 'check');
@@ -1052,7 +1052,7 @@
         });
 
         function resetCopyButton() {
-            copyBtnText.textContent = 'Sao chép';
+            copyBtnText.textContent = 'Copy';
             copyCiteBtn.className = "absolute top-3 right-3 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-slate-50 dark:hover:bg-slate-950/50 shadow-sm flex items-center space-x-1.5 transition";
             copyBtnIcon.setAttribute('data-lucide', 'copy');
             lucide.createIcons();
