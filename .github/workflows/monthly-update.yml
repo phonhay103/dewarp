@@ -48,6 +48,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: update monthly papers and repos"
           title: "Monthly Update: New Papers & Repositories"
-          body: "Automated PR to update README.md with the latest papers and repositories."
+          body-path: "report.md"
           branch: "monthly-update"
           base: "main"

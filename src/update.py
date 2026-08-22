@@ -86,7 +86,7 @@ def run_pipeline(
     start_date: datetime,
     force: bool = False,
     reanalyze_existing: bool = False
-) -> Tuple[Database, str, Dict[str, Any]]:
+) -> Tuple[Database, str, Dict[str, Any], List[Entry]]:
     """
     Executes the main automated update pipeline functionally.
     
@@ -221,8 +221,75 @@ def run_pipeline(
         "total_db_entries": len(db['entries'])
     }
 
-    return db, readme_content, stats_summary
+    processed_items = processed_entries if items_to_process else []
 
+    return db, readme_content, stats_summary, processed_items
+
+def generate_markdown_report(
+    config: AppConfig,
+    db: Database,
+    stats_summary: Dict[str, Any],
+    fetch_days: int,
+    elapsed: float,
+    processed_items: List[Entry]
+) -> str:
+    topic = config['topics'][0]
+    llm_cfg = config.get('llm', {})
+    primary_model = llm_cfg.get('model', 'N/A')
+    fallback_models = ", ".join(llm_cfg.get('fallback_models', [])) or "None"
+    
+    entries = db.get('entries', [])
+    tag_counts = {}
+    for tag in topic.get('tags', []):
+        tag_counts[tag] = sum(1 for e in entries if tag in e.get('tags', []))
+        
+    tag_breakdown_str = " | ".join([f"**{tag}**: {count}" for tag, count in tag_counts.items()])
+
+    report = "## 📊 Automated Pipeline Execution Report\n\n"
+    report += "### 📈 Overview Metrics\n\n"
+    report += "| Metric | Details |\n"
+    report += "| :--- | :--- |\n"
+    report += f"| 📅 **Fetch Interval** | Past {fetch_days} days |\n"
+    report += f"| 📄 **arXiv Papers Fetched** | {stats_summary['arxiv_fetched']} |\n"
+    report += f"| 💻 **GitHub Repos Fetched** | {stats_summary['github_fetched']} |\n"
+    report += f"| 🔍 **Total Items Analyzed** | {stats_summary['items_analyzed']} |\n"
+    report += f"| ✅ **LLM Analysis Success** | {stats_summary['llm_success']} |\n"
+    report += f"| ❌ **LLM Analysis Failed** | {stats_summary['llm_error']} |\n"
+    report += f"| ⭐ **GitHub Stats Enriched** | {stats_summary['repos_enriched']} repos |\n"
+    report += f"| 📚 **Total Database Entries** | {stats_summary['total_db_entries']} |\n"
+    report += f"| ⏱️ **Total Execution Time** | {elapsed:.2f} seconds |\n\n"
+
+    report += "### 🏷️ Database Tag Breakdown\n\n"
+    report += f"{tag_breakdown_str}\n\n"
+
+    report += "### 🤖 LLM Models Configured\n\n"
+    report += f"- **Primary Model**: `{primary_model}`\n"
+    report += f"- **Fallback Models**: `{fallback_models}`\n\n"
+
+    report += "### 📝 Items Analyzed / Processed in this Run\n\n"
+    if processed_items:
+        for idx, item in enumerate(processed_items, 1):
+            title = item.get('title', 'Untitled')
+            year = item.get('year', '')
+            year_str = f" ({year})" if year else ""
+            tags_str = ", ".join(item.get('tags', ['Uncategorized']))
+            
+            report += f"{idx}. **{title}**{year_str}\n"
+            if item.get('paper_url'):
+                report += f"   - **Paper**: {item['paper_url']}\n"
+            if item.get('code_url'):
+                report += f"   - **Code**: {item['code_url']}\n"
+            report += f"   - **Tags**: {tags_str}\n"
+            if item.get('stars') is not None:
+                report += f"   - **Stats**: Stars: {item.get('stars', 0)} | Forks: {item.get('forks', 0)} | Last Commit: {item.get('last_commit', 'N/A')}\n"
+            if item.get('summary'):
+                report += f"   - **Summary**: {item['summary']}\n"
+            report += "\n"
+    else:
+        report += "No new items were required to be analyzed in this run. Database is up to date.\n\n"
+
+    report += "---\n*Report generated automatically by the update pipeline.*"
+    return report
 def main() -> None:
     logger.info("Starting monthly update process.")
     start_time = datetime.now()
@@ -254,7 +321,7 @@ def main() -> None:
     logger.info(f"Fetching entries for the past {fetch_days} days.")
     start_date = start_time - timedelta(days=fetch_days)
     
-    updated_db, readme_content, stats_summary = run_pipeline(
+    updated_db, readme_content, stats_summary, processed_items = run_pipeline(
         fetch_papers=fetch_arxiv,
         fetch_repos=fetch_github,
         analyze_item=analyze_with_llm,
@@ -266,14 +333,17 @@ def main() -> None:
         reanalyze_existing=reanalyze_existing
     )
     
+    elapsed = (datetime.now() - start_time).total_seconds()
+    report_content = generate_markdown_report(config, updated_db, stats_summary, fetch_days, elapsed, processed_items)
+
     # Execute side-effects safely at boundary
     save_db = lambda d: write_json('data/database.json', d)
     save_readme = lambda c: write_file('README.md', c)
+    save_report = lambda r: write_file('report.md', r)
     
     save_db(updated_db)
     save_readme(readme_content)
-    
-    elapsed = (datetime.now() - start_time).total_seconds()
+    save_report(report_content)
 
     summary_msg = (
         "\n" + "=" * 50 + "\n"
