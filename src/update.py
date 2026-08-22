@@ -79,7 +79,7 @@ def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str
 def run_pipeline(
     fetch_papers: Callable[[str, datetime], List[Entry]],
     fetch_repos: Callable[[str, datetime], List[Entry]],
-    analyze_item: Callable[[Entry, AppConfig, Topic, dict[str, Any], str], dict[str, Any]],
+    analyze_item: Callable[[Entry, AppConfig, Topic, dict[str, Any], str], Tuple[dict[str, Any], dict[str, Any]]],
     render_md: Callable[[AppConfig, Database], str],
     config: AppConfig,
     db: Database,
@@ -156,7 +156,7 @@ def run_pipeline(
             "additionalProperties": False
         }
         
-        result = analyze_item(
+        result, usage = analyze_item(
             item, 
             config, 
             topic, 
@@ -175,22 +175,40 @@ def run_pipeline(
         
         item_dict = dict(item)
         item_dict.pop('category', None)
-        return {**item_dict, 'tags': valid_tags, 'summary': summary, 'description': None} # type: ignore
+        processed_entry = {**item_dict, 'tags': valid_tags, 'summary': summary, 'description': None} # type: ignore
+        return processed_entry, usage
 
     llm_success = 0
     llm_error = 0
+    total_prompt_tokens = 0
+    total_completion_tokens = 0
+    total_cached_tokens = 0
+    total_tokens = 0
+    processed_items_with_usage = []
+
     if items_to_process:
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-            processed_entries = list(executor.map(process_item, items_to_process))
+            results = list(executor.map(process_item, items_to_process))
             
-        for pe in processed_entries:
+        processed_entries = []
+        for pe, usage in results:
+            processed_entries.append(pe)
+            pe_copy = dict(pe)
+            pe_copy['_usage'] = usage
+            processed_items_with_usage.append(pe_copy)
+
             if pe.get('summary') and not pe['summary'].startswith('Error'):
                 llm_success += 1
             else:
                 llm_error += 1
 
-        # Clean out temporary fields
-        processed_entries = [{k: v for k, v in e.items() if v is not None} for e in processed_entries]
+            total_prompt_tokens += usage.get('prompt_tokens', 0)
+            total_completion_tokens += usage.get('completion_tokens', 0)
+            total_cached_tokens += usage.get('cached_tokens', 0)
+            total_tokens += usage.get('total_tokens', 0)
+
+        # Clean out temporary fields from DB entries
+        processed_entries = [{k: v for k, v in e.items() if v is not None and k != '_usage'} for e in processed_entries]
         
         # Merge updated/new entries into database by id
         entry_map = {e['id']: e for e in entries}
@@ -217,13 +235,15 @@ def run_pipeline(
         "items_analyzed": len(items_to_process),
         "llm_success": llm_success,
         "llm_error": llm_error,
+        "prompt_tokens": total_prompt_tokens,
+        "completion_tokens": total_completion_tokens,
+        "cached_tokens": total_cached_tokens,
+        "total_tokens": total_tokens,
         "repos_enriched": enriched_count,
         "total_db_entries": len(db['entries'])
     }
 
-    processed_items = processed_entries if items_to_process else []
-
-    return db, readme_content, stats_summary, processed_items
+    return db, readme_content, stats_summary, processed_items_with_usage
 
 def generate_markdown_report(
     config: AppConfig,
@@ -259,6 +279,14 @@ def generate_markdown_report(
     report += f"| 📚 **Total Database Entries** | {stats_summary['total_db_entries']} |\n"
     report += f"| ⏱️ **Total Execution Time** | {elapsed:.2f} seconds |\n\n"
 
+    report += "### 🔢 Token Usage Metrics\n\n"
+    report += "| Token Metric | Count |\n"
+    report += "| :--- | :--- |\n"
+    report += f"| 📥 **Input Tokens (Prompt)** | {stats_summary.get('prompt_tokens', 0):,} |\n"
+    report += f"| 📤 **Output Tokens (Completion)** | {stats_summary.get('completion_tokens', 0):,} |\n"
+    report += f"| ⚡ **Cached Tokens** | {stats_summary.get('cached_tokens', 0):,} |\n"
+    report += f"| 🧮 **Total Tokens Used** | {stats_summary.get('total_tokens', 0):,} |\n\n"
+
     report += "### 🏷️ Database Tag Breakdown\n\n"
     report += f"{tag_breakdown_str}\n\n"
 
@@ -273,6 +301,7 @@ def generate_markdown_report(
             year = item.get('year', '')
             year_str = f" ({year})" if year else ""
             tags_str = ", ".join(item.get('tags', ['Uncategorized']))
+            usage = item.get('_usage', {})
             
             report += f"{idx}. **{title}**{year_str}\n"
             if item.get('paper_url'):
@@ -282,6 +311,8 @@ def generate_markdown_report(
             report += f"   - **Tags**: {tags_str}\n"
             if item.get('stars') is not None:
                 report += f"   - **Stats**: Stars: {item.get('stars', 0)} | Forks: {item.get('forks', 0)} | Last Commit: {item.get('last_commit', 'N/A')}\n"
+            if usage:
+                report += f"   - **Tokens**: Input: {usage.get('prompt_tokens', 0):,} | Output: {usage.get('completion_tokens', 0):,} | Cached: {usage.get('cached_tokens', 0):,} | Total: {usage.get('total_tokens', 0):,} ({usage.get('model', 'N/A')})\n"
             if item.get('summary'):
                 report += f"   - **Summary**: {item['summary']}\n"
             report += "\n"
@@ -356,6 +387,10 @@ def main() -> None:
         f"- Items Analyzed (LLM)   : {stats_summary['items_analyzed']}\n"
         f"- LLM Analysis Success   : {stats_summary['llm_success']}\n"
         f"- LLM Analysis Failed    : {stats_summary['llm_error']}\n"
+        f"- Input Tokens (Prompt)  : {stats_summary.get('prompt_tokens', 0):,}\n"
+        f"- Output Tokens (Completion): {stats_summary.get('completion_tokens', 0):,}\n"
+        f"- Cached Tokens          : {stats_summary.get('cached_tokens', 0):,}\n"
+        f"- Total Tokens Used      : {stats_summary.get('total_tokens', 0):,}\n"
         f"- Repos Enriched (Stats) : {stats_summary['repos_enriched']}\n"
         f"- Total Database Entries : {stats_summary['total_db_entries']}\n"
         f"- Total Execution Time   : {elapsed:.2f} seconds\n"

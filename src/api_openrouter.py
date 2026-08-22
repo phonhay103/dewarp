@@ -25,7 +25,7 @@ def analyze_with_llm(
     topic: Topic,
     schema: Dict[str, Any],
     schema_name: str = "StructuredResponse"
-) -> Dict[str, Any]:
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """
     Uses an LLM via OpenRouter to analyze an item based on a provided schema.
     
@@ -37,7 +37,7 @@ def analyze_with_llm(
         schema_name (str): The name for the JSON schema wrapper.
         
     Returns:
-        Dict[str, Any]: The parsed JSON response matching the schema.
+        Tuple[Dict[str, Any], Dict[str, Any]]: (parsed JSON response, token usage info)
     """
     system_prompt = config['llm']['system_prompt']
     description = item.get('description') or ''
@@ -76,6 +76,14 @@ def analyze_with_llm(
 
     response_format = build_response_format(name=schema_name, schema=schema)
     
+    default_usage = {
+        "model": "None",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "cached_tokens": 0,
+        "total_tokens": 0
+    }
+
     for model in models_to_try:
         data = {
             "model": model,
@@ -97,10 +105,32 @@ def analyze_with_llm(
                 resp_data = json.loads(response.read().decode('utf-8'))
                 content = resp_data['choices'][0]['message']['content']
                 parsed = json.loads(content)
+                
+                usage_resp = resp_data.get('usage', {})
+                prompt_tokens = usage_resp.get('prompt_tokens') or usage_resp.get('input_tokens') or 0
+                completion_tokens = usage_resp.get('completion_tokens') or usage_resp.get('output_tokens') or 0
+                
+                cached_tokens = 0
+                prompt_details = usage_resp.get('prompt_tokens_details')
+                if isinstance(prompt_details, dict):
+                    cached_tokens = prompt_details.get('cached_tokens') or 0
+                elif usage_resp.get('cache_read_input_tokens') is not None:
+                    cached_tokens = usage_resp.get('cache_read_input_tokens') or 0
+
+                total_tokens = usage_resp.get('total_tokens') or (prompt_tokens + completion_tokens)
+
+                usage_info = {
+                    "model": resp_data.get('model', model),
+                    "prompt_tokens": prompt_tokens,
+                    "completion_tokens": completion_tokens,
+                    "cached_tokens": cached_tokens,
+                    "total_tokens": total_tokens
+                }
+
                 if parsed:
-                    return parsed
+                    return parsed, usage_info
         except Exception as e:
             logger.warning(f"Model '{model}' failed for item '{item['title']}': {e}. Trying fallback if available...")
 
     logger.error(f"All models failed for item '{item['title']}'.")
-    return {}
+    return {}, default_usage
