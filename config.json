@@ -1,6 +1,7 @@
 {
   "settings": {
-    "fetch_days": 30
+    "fetch_days": 30,
+    "min_stars": 0
   },
   "topics": [
     {

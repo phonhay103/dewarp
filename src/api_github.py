@@ -37,13 +37,14 @@ def get_github_token() -> Optional[str]:
             
     return None
 
-def fetch_github(query: str, start_date: datetime) -> List[Entry]:
+def fetch_github(query: str, start_date: datetime, min_stars: int = 0) -> List[Entry]:
     """
     Fetches repositories from the GitHub API based on a query and a start date.
     
     Args:
         query (str): The search query for GitHub.
         start_date (datetime): The cutoff date for repositories to include.
+        min_stars (int): The minimum star count required for repositories.
         
     Returns:
         List[Entry]: A list of repository metadata dictionaries.
@@ -63,6 +64,11 @@ def fetch_github(query: str, start_date: datetime) -> List[Entry]:
         with urllib.request.urlopen(req) as response:
             data = json.loads(response.read().decode('utf-8'))
             for item in data.get('items', []):
+                stars = item.get('stargazers_count', 0)
+                if stars < min_stars:
+                    logger.info(f"Ignoring GitHub repo '{item['full_name']}' because star count ({stars}) is below minimum required ({min_stars}).")
+                    continue
+
                 pushed_at = item.get('pushed_at', '')
                 if pushed_at and 'T' in pushed_at:
                     last_commit = pushed_at.replace("T", " ").replace("Z", " UTC")
@@ -78,7 +84,7 @@ def fetch_github(query: str, start_date: datetime) -> List[Entry]:
                     "year": item['created_at'][:4],
                     "authors": item.get('owner', {}).get('login', ''),
                     "description": item.get('description', '') or "",
-                    "stars": item.get('stargazers_count', 0),
+                    "stars": stars,
                     "forks": item.get('forks_count', 0),
                     "last_commit": last_commit
                 })

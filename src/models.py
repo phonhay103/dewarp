@@ -33,6 +33,7 @@ class LlmConfig(TypedDict, total=False):
     user_prompt_template: str
 class Settings(TypedDict, total=False):
     fetch_days: int
+    min_stars: int
 
 class AppConfig(TypedDict):
     settings: Settings

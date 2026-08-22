@@ -10,6 +10,11 @@ on:
         required: false
         default: '30'
         type: string
+      min_stars:
+        description: 'Minimum star count for GitHub repos (e.g., 0, 1, 5)'
+        required: false
+        default: '0'
+        type: string
       force:
         description: 'Force re-analyzing existing entries (true/false)'
         required: false
@@ -38,6 +43,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FETCH_DAYS: ${{ github.event.inputs.days }}
+          MIN_STARS: ${{ github.event.inputs.min_stars }}
           FORCE_UPDATE: ${{ github.event.inputs.force }}
           REANALYZE_EXISTING: ${{ github.event.inputs.reanalyze_existing }}
         run: python src/update.py

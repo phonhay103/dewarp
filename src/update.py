@@ -85,7 +85,8 @@ def run_pipeline(
     db: Database,
     start_date: datetime,
     force: bool = False,
-    reanalyze_existing: bool = False
+    reanalyze_existing: bool = False,
+    min_stars: int = 0
 ) -> Tuple[Database, str, Dict[str, Any], List[Entry]]:
     """
     Executes the main automated update pipeline functionally.
@@ -98,23 +99,16 @@ def run_pipeline(
     logger.info("Fetching arXiv and GitHub concurrently...")
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         future_arxiv = executor.submit(fetch_papers, topic['queries']['arxiv'], start_date)
-        future_github = executor.submit(fetch_repos, topic['queries']['github'], start_date)
+        future_github = executor.submit(fetch_repos, topic['queries']['github'], start_date, min_stars)
         papers = future_arxiv.result()
         repos = future_github.result()
     
     entries = db.get('entries', [])
 
     if reanalyze_existing:
-        logger.info(f"Re-analyze mode enabled: updating all {len(entries)} existing database entries without fetching new ones.")
-        items_to_process = list(entries)
+        logger.info(f"Re-analyze mode enabled: updating existing database entries without fetching new ones.")
+        candidate_items = list(entries)
     else:
-        logger.info("Fetching arXiv and GitHub concurrently...")
-        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-            future_arxiv = executor.submit(fetch_papers, topic['queries']['arxiv'], start_date)
-            future_github = executor.submit(fetch_repos, topic['queries']['github'], start_date)
-            papers = future_arxiv.result()
-            repos = future_github.result()
-
         if force:
             logger.info("Force mode enabled: re-analyzing all fetched entries.")
             valid_ids = set()
@@ -127,10 +121,15 @@ def run_pipeline(
             valid_paper_urls = {e['paper_url'] for e in valid_entries if e.get('paper_url')}
             valid_code_urls = {e['code_url'] for e in valid_entries if e.get('code_url')}
 
-        items_to_process = [p for p in papers if p['id'] not in valid_ids and p['paper_url'] not in valid_paper_urls]
-        items_to_process.extend(r for r in repos if r['id'] not in valid_ids and r['code_url'] not in valid_code_urls)
+        candidate_items = [p for p in papers if p['id'] not in valid_ids and p['paper_url'] not in valid_paper_urls]
+        candidate_items.extend(r for r in repos if r['id'] not in valid_ids and r['code_url'] not in valid_code_urls)
 
-    logger.info(f"Found {len(items_to_process)} entries to analyze.")
+    items_to_process = []
+    for item in candidate_items:
+        if item.get('stars') is not None and item.get('stars') < min_stars:
+            logger.info(f"Ignoring '{item['title']}' because star count ({item.get('stars')}) is below minimum threshold ({min_stars}).")
+            continue
+        items_to_process.append(item)
     
     def process_item(item: Entry) -> Entry:
         logger.info(f"Analyzing: {item['title']}")
@@ -240,7 +239,8 @@ def run_pipeline(
         "cached_tokens": total_cached_tokens,
         "total_tokens": total_tokens,
         "repos_enriched": enriched_count,
-        "total_db_entries": len(db['entries'])
+        "total_db_entries": len(db['entries']),
+        "min_stars": min_stars
     }
 
     return db, readme_content, stats_summary, processed_items_with_usage
@@ -270,6 +270,7 @@ def generate_markdown_report(
     report += "| Metric | Details |\n"
     report += "| :--- | :--- |\n"
     report += f"| 📅 **Fetch Interval** | Past {fetch_days} days |\n"
+    report += f"| ⭐ **Min Stars Threshold** | {stats_summary.get('min_stars', 0)} stars |\n"
     report += f"| 📄 **arXiv Papers Fetched** | {stats_summary['arxiv_fetched']} |\n"
     report += f"| 💻 **GitHub Repos Fetched** | {stats_summary['github_fetched']} |\n"
     report += f"| 🔍 **Total Items Analyzed** | {stats_summary['items_analyzed']} |\n"
@@ -330,6 +331,7 @@ def main() -> None:
     
     parser = argparse.ArgumentParser(description="Fetch and analyze arXiv papers and GitHub repos.")
     parser.add_argument('--days', type=int, help="Number of days back to fetch entries")
+    parser.add_argument('--min-stars', type=int, help="Minimum star count required for GitHub repos")
     parser.add_argument('--force', action='store_true', help="Force re-analyzing existing entries")
     parser.add_argument('--reanalyze-existing', action='store_true', help="Re-analyze all existing database entries without fetching new ones")
     args, _ = parser.parse_known_args()
@@ -340,7 +342,7 @@ def main() -> None:
     env_reanalyze = os.environ.get('REANALYZE_EXISTING', '').lower() in ('true', '1', 'yes')
     reanalyze_existing = args.reanalyze_existing or env_reanalyze
 
-    # Determine fetch interval: CLI arg > Env var > config.json > default 7
+    # Determine fetch interval: CLI arg > Env var > config.json > default 30
     env_days = os.environ.get('FETCH_DAYS')
     if args.days is not None:
         fetch_days = args.days
@@ -349,7 +351,16 @@ def main() -> None:
     else:
         fetch_days = config.get('settings', {}).get('fetch_days', 30)
 
-    logger.info(f"Fetching entries for the past {fetch_days} days.")
+    # Determine min stars threshold: CLI arg > Env var > config.json > default 0
+    env_min_stars = os.environ.get('MIN_STARS')
+    if args.min_stars is not None:
+        min_stars = args.min_stars
+    elif env_min_stars and env_min_stars.isdigit():
+        min_stars = int(env_min_stars)
+    else:
+        min_stars = config.get('settings', {}).get('min_stars', 0)
+
+    logger.info(f"Fetching entries for the past {fetch_days} days (Minimum stars threshold: {min_stars}).")
     start_date = start_time - timedelta(days=fetch_days)
     
     updated_db, readme_content, stats_summary, processed_items = run_pipeline(
@@ -361,7 +372,8 @@ def main() -> None:
         db=db,
         start_date=start_date,
         force=force,
-        reanalyze_existing=reanalyze_existing
+        reanalyze_existing=reanalyze_existing,
+        min_stars=min_stars
     )
     
     elapsed = (datetime.now() - start_time).total_seconds()
@@ -381,6 +393,7 @@ def main() -> None:
         "              EXECUTION SUMMARY\n"
         "==================================================\n"
         f"- Fetch Interval         : Past {fetch_days} days\n"
+        f"- Min Stars Threshold    : {min_stars}\n"
         f"- arXiv Papers Fetched   : {stats_summary['arxiv_fetched']}\n"
         f"- GitHub Repos Fetched   : {stats_summary['github_fetched']}\n"
         f"- Total Items Fetched    : {stats_summary['total_fetched']}\n"
