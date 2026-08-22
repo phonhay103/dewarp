@@ -10,7 +10,7 @@ class Entry(TypedDict, total=False):
     year: str
     authors: str
     description: Optional[str]
-    category: Optional[str]
+    tags: Optional[List[str]]
     summary: Optional[str]
     stars: Optional[int]
     forks: Optional[int]
@@ -23,7 +23,7 @@ class TopicQuery(TypedDict):
 class Topic(TypedDict):
     name: str
     queries: TopicQuery
-    categories: List[str]
+    tags: List[str]
 
 class LlmConfig(TypedDict):
     model: str

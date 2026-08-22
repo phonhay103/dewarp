@@ -6,13 +6,15 @@
       "paper_url": "https://arxiv.org/abs/2104.06815",
       "code_url": "https://github.com/gwxie/Dewarping-Document-Image-By-Displacement-Flow-Estimation",
       "year": "2021",
-      "category": "Dataset",
       "authors": "",
       "summary": "This paper introduces a fully convolutional network that estimates dense displacement flow fields to rectify warped document images, enabling accurate dewarping for improved text recognition.",
       "date": "2021",
       "stars": 195,
       "forks": 40,
-      "last_commit": "2022-12-04 13:05:41 UTC"
+      "last_commit": "2022-12-04 13:05:41 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://arxiv.org/abs/2110.12942",
@@ -20,13 +22,15 @@
       "paper_url": "https://arxiv.org/abs/2110.12942",
       "code_url": "https://github.com/fh2019ustc/doctr",
       "year": "2021",
-      "category": "Dataset",
       "authors": "",
       "summary": "The paper presents DocTr, a transformer-based approach that performs geometric unwarping and illumination correction on document images, aiming to address the challenges associated with dewarped document images.",
       "date": "2021",
       "stars": 443,
       "forks": 59,
-      "last_commit": "2026-07-10 00:32:34 UTC"
+      "last_commit": "2026-07-10 00:32:34 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://arxiv.org/abs/2007.09824",
@@ -34,13 +38,15 @@
       "paper_url": "https://arxiv.org/abs/2007.09824",
       "code_url": "https://github.com/DVLP-CMATERJU/RectiNet",
       "year": "2020",
-      "category": "Dataset",
       "authors": "",
       "summary": "The paper introduces Rectinet, a Gated and Bifurcated Stacked U-Net module designed to correct geometric distortions (dewarping) in scanned document images, improving downstream OCR performance.",
       "date": "2020",
       "stars": 109,
       "forks": 10,
-      "last_commit": "2022-11-02 10:56:48 UTC"
+      "last_commit": "2022-11-02 10:56:48 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://arxiv.org/abs/2003.06872",
@@ -48,10 +54,12 @@
       "paper_url": "https://arxiv.org/abs/2003.06872",
       "code_url": "",
       "year": "2020",
-      "category": "Dataset",
       "authors": "",
       "summary": "The paper introduces a multistage curvilinear coordinate transform combined with a novel quality estimator to effectively dewarp document images, enhancing subsequent analysis and recognition tasks.",
-      "date": "2020"
+      "date": "2020",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf",
@@ -59,13 +67,15 @@
       "paper_url": "https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf",
       "code_url": "https://github.com/cvlab-stonybrook/DewarpNet",
       "year": "2019",
-      "category": "Dataset",
       "authors": "",
       "summary": "The paper introduces DewarpNet, a stacked 3D‑2D regression network that predicts per‑pixel warp maps to restore the original geometry of scanned documents, enabling accurate text extraction and downstream analysis.",
       "date": "2019",
       "stars": 624,
       "forks": 107,
-      "last_commit": "2024-11-10 18:31:01 UTC"
+      "last_commit": "2024-11-10 18:31:01 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://github.com/thomasjhuang/deep-learning-for-document-dewarping",
@@ -73,13 +83,15 @@
       "paper_url": "",
       "code_url": "https://github.com/thomasjhuang/deep-learning-for-document-dewarping",
       "year": "2019",
-      "category": "Dataset",
       "authors": "",
       "summary": "Docuwarp (2019) presents a technique for dewarping curved document photographs, using geometric correction and image warping to restore the original flat layout of text pages, improving document analysis accuracy.",
       "date": "2019",
       "stars": 154,
       "forks": 26,
-      "last_commit": "2021-10-18 17:25:42 UTC"
+      "last_commit": "2021-10-18 17:25:42 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Ma_DocUNet_Document_Image_CVPR_2018_paper.pdf",
@@ -87,13 +99,15 @@
       "paper_url": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Ma_DocUNet_Document_Image_CVPR_2018_paper.pdf",
       "code_url": "https://github.com/teresasun/docUnet.pytorch",
       "year": "2018",
-      "category": "Uncategorized",
       "authors": "",
       "summary": "DocUNet presents a stacked U-Net architecture that effectively restores warped document images to flat, legible form, improving OCR performance on scanned texts.",
       "date": "2018",
       "stars": 128,
       "forks": 30,
-      "last_commit": "2019-02-15 07:58:00 UTC"
+      "last_commit": "2019-02-15 07:58:00 UTC",
+      "tags": [
+        "Uncategorized"
+      ]
     },
     {
       "id": "https://github.com/xellows1305/Document-Image-Dewarping (Exe only)",
@@ -101,10 +115,12 @@
       "paper_url": "",
       "code_url": "https://github.com/xellows1305/Document-Image-Dewarping (Exe only)",
       "year": "2017",
-      "category": "Dataset",
       "authors": "",
       "summary": "We document the *Image Dewarping Dataset for Document Images* from the paper, which provides real-world examples of distorted scanned documents (e.g., books, forms) with corresponding dewarped references. This dataset specifically underpins the 'Robust Document Image Dewarping Method' proposed in 2017, containing paired distorted and corrected document images for quantitative evaluation of dewarping algorithms.",
-      "date": "2017"
+      "date": "2017",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://sci-hub.se/10.1016/j.patcog.2015.04.026",
@@ -112,10 +128,12 @@
       "paper_url": "https://sci-hub.se/10.1016/j.patcog.2015.04.026",
       "code_url": "",
       "year": "2015",
-      "category": "Dataset",
       "authors": "",
       "summary": "This 2015 research paper introduces a text-line based optimization technique for dewarping document images, aiming to restore distorted pages into a readable, flat layout by aligning text lines and correcting geometric distortions.",
-      "date": "2015"
+      "date": "2015",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "A novel model-based dewarping technique for advanced Digital Library systems (2014)",
@@ -123,10 +141,12 @@
       "paper_url": "",
       "code_url": "",
       "year": "2014",
-      "category": "Survey",
       "authors": "",
       "summary": "The paper introduces a model-based approach to dewarping captured images of books in digital library applications, proposing a technique to correct geometric distortions for improved document digitization.",
-      "date": "2014"
+      "date": "2014",
+      "tags": [
+        "Survey"
+      ]
     },
     {
       "id": "http://www.imlab.jp/cbdar2007/proceedings/papers/P1.pdf",
@@ -134,10 +154,12 @@
       "paper_url": "http://www.imlab.jp/cbdar2007/proceedings/papers/P1.pdf",
       "code_url": "",
       "year": "2007",
-      "category": "Dataset",
       "authors": "",
       "summary": "This 2007 paper proposes a model-based dewarping technique for books by detecting text lines in images to correct geometric distortion, facilitating accurate OCR of skewed book pages.",
-      "date": "2007"
+      "date": "2007",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://sci-hub.se/10.1109/ICDAR.2005.87",
@@ -145,10 +167,12 @@
       "paper_url": "https://sci-hub.se/10.1109/ICDAR.2005.87",
       "code_url": "",
       "year": "2005",
-      "category": "Dataset",
       "authors": "",
       "summary": "The paper introduces a global optimization method to correct geometric distortions in document images, enhancing dewarping accuracy through systematic image processing techniques.",
-      "date": "2005"
+      "date": "2005",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "https://arxiv.org/abs/2102.01120",
@@ -156,10 +180,12 @@
       "paper_url": "https://arxiv.org/abs/2102.01120",
       "code_url": "",
       "year": "Other",
-      "category": "Dataset",
       "authors": "",
       "summary": "RectiNet-v2 introduces a stacked network architecture specifically designed for document image dewarping, correcting distortions in curved or warped document pages to produce flat, distortion-free images suitable for downstream OCR tasks.",
-      "date": "Other"
+      "date": "Other",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2508.06988v1",
@@ -169,8 +195,10 @@
       "date": "2025-08-09",
       "year": "2025",
       "authors": "Fangmin Zhao, Weichao Zeng, Zhenhang Li, Dongbao Yang, Yu Zhou",
-      "category": "Tool",
-      "summary": "The paper introduces TADoc, a robust, time-aware framework designed to dewarp document images captured under varying temporal conditions, ensuring accurate text rendering and layout preservation."
+      "summary": "The paper introduces TADoc, a robust, time-aware framework designed to dewarp document images captured under varying temporal conditions, ensuring accurate text rendering and layout preservation.",
+      "tags": [
+        "Tool"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2507.15085v4",
@@ -180,8 +208,10 @@
       "date": "2025-07-20",
       "year": "2025",
       "authors": "Peirong Zhang, Haowei Xu, Jiaxin Zhang, Xuhan Zheng, Guitao Xu, Yuyi Zhang, Junle Liu, Zhenhua Yang, Wei Zhou, Lianwen Jin",
-      "category": "Dataset",
-      "summary": "OCRGenBench একটি মানদণ্ডীয় বেঞ্চমার্ক যা OCR‑এর জেনারেটিভ ক্ষমতার সঠিক মূল্যায়ন করতে ডিজাইন করা হয়েছে; এতে ফন্ট, স্ক্যানিং শিফট এবং বায়োস্ক্যানের মতো ভিন্ন পatterns ম~max করা হয়।"
+      "summary": "OCRGenBench একটি মানদণ্ডীয় বেঞ্চমার্ক যা OCR‑এর জেনারেটিভ ক্ষমতার সঠিক মূল্যায়ন করতে ডিজাইন করা হয়েছে; এতে ফন্ট, স্ক্যানিং শিফট এবং বায়োস্ক্যানের মতো ভিন্ন পatterns ম~max করা হয়।",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2507.15000v2",
@@ -191,8 +221,10 @@
       "date": "2025-07-20",
       "year": "2025",
       "authors": "Chaoyun Wang, I-Chao Shen, Takeo Igarashi, Caigui Jiang",
-      "category": "Dataset",
-      "summary": "This technique corrects axis-aligned warping distortions in scanned document images to restore their original rectangular structure."
+      "summary": "This technique corrects axis-aligned warping distortions in scanned document images to restore their original rectangular structure.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2507.08492v3",
@@ -202,8 +234,10 @@
       "date": "2025-07-11",
       "year": "2025",
       "authors": "Heng Li, Xiangping Wu, Qingcai Chen",
-      "category": "Dataset",
-      "summary": "The paper introduces D2Dewarp, a dual‑dimensional geometric representation learning framework that dewarps document images, enabling accurate geometric normalization for downstream document layout analysis and OCR tasks."
+      "summary": "The paper introduces D2Dewarp, a dual‑dimensional geometric representation learning framework that dewarps document images, enabling accurate geometric normalization for downstream document layout analysis and OCR tasks.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2505.21975v2",
@@ -213,8 +247,10 @@
       "date": "2025-05-28",
       "year": "2025",
       "authors": "Weiguang Zhang, Huangcheng Lu, Maizhen Ning, Xiaowei Huang, Wei Wang, Kaizhu Huang, Qiufeng Wang",
-      "category": "Dataset",
-      "summary": "The paper introduces DvD, a generative diffusion model that dewarps document images by operating directly on coordinate representations, demonstrating state-of-the-art performance on dewarping tasks."
+      "summary": "The paper introduces DvD, a generative diffusion model that dewarps document images by operating directly on coordinate representations, demonstrating state-of-the-art performance on dewarping tasks.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2501.03145v3",
@@ -224,8 +260,10 @@
       "date": "2025-01-06",
       "year": "2025",
       "authors": "Valery Istomin, Oleg Pereziabov, Ilya Afanasyev",
-      "category": "Dataset",
-      "summary": "The paper introduces an efficient dewarping technique for document images that fuses a deep neural network with cubic polynomial geometric modeling to accurately restore the original shape of warped pages."
+      "summary": "The paper introduces an efficient dewarping technique for document images that fuses a deep neural network with cubic polynomial geometric modeling to accurately restore the original shape of warped pages.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2312.07925v1",
@@ -235,8 +273,10 @@
       "date": "2023-12-13",
       "year": "2023",
       "authors": "Weiguang Zhang, Qiufeng Wang, Kaizhu Huang",
-      "category": "Dataset",
-      "summary": "The polar-dewarp method processes document images captured under polar representation to correct curvature and improve readability."
+      "summary": "The polar-dewarp method processes document images captured under polar representation to correct curvature and improve readability.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2307.12571v1",
@@ -246,8 +286,10 @@
       "date": "2023-07-24",
       "year": "2023",
       "authors": "Beiya Dai, Xing li, Qunyi Xie, Yulin Li, Xiameng Qin, Chengquan Zhang, Kun Yao, Junyu Han",
-      "category": "Dataset",
-      "summary": "Presenting MataDoc, which applies margin- and text-aware dewarping to document images with arbitrary boundaries to improve geometric accuracy and readability."
+      "summary": "Presenting MataDoc, which applies margin- and text-aware dewarping to document images with arbitrary boundaries to improve geometric accuracy and readability.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2207.11515v1",
@@ -257,8 +299,10 @@
       "date": "2022-07-23",
       "year": "2022",
       "authors": "Jiaxin Zhang, Canjie Luo, Lianwen Jin, Fengjun Guo, Kai Ding",
-      "category": "Method",
-      "summary": "Marior addresses real-world document dewarping by removing margins and iteratively refining content to correct distortions, enabling robust performance under uncontrolled imaging conditions."
+      "summary": "Marior addresses real-world document dewarping by removing margins and iteratively refining content to correct distortions, enabling robust performance under uncontrolled imaging conditions.",
+      "tags": [
+        "Method"
+      ]
     },
     {
       "id": "http://arxiv.org/abs/2203.16850v1",
@@ -268,8 +312,10 @@
       "date": "2022-03-31",
       "year": "2022",
       "authors": "Xiangwei Jiang, Rujiao Long, Nan Xue, Zhibo Yang, Cong Yao, Gui-Song Xia",
-      "category": "Dataset",
-      "summary": "This paper revisits document image dewarping by proposing a grid regularization technique to correct geometric distortions in scanned documents."
+      "summary": "This paper revisits document image dewarping by proposing a grid regularization technique to correct geometric distortions in scanned documents.",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "100222131",
@@ -279,11 +325,13 @@
       "date": "2017-08-14",
       "year": "2017",
       "authors": "taeho-kil",
-      "category": "Dataset",
       "summary": "The taeho-kil/Document-Image-Dewarping repository provides a method and implementation for dewarping scanned document images, correcting geometric distortions to produce flat, readable images suitable for downstream processing such as OCR.",
       "stars": 429,
       "forks": 53,
-      "last_commit": "2019-09-30 15:22:01 UTC"
+      "last_commit": "2019-09-30 15:22:01 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "736856808",
@@ -293,11 +341,13 @@
       "date": "2023-12-29",
       "year": "2023",
       "authors": "ZZZHANG-jx",
-      "category": "Method",
       "summary": "Image dewarping is a method that corrects geometric distortions in photographs to produce undistorted, rectified images for analysis or further processing.",
       "stars": 399,
       "forks": 26,
-      "last_commit": "2026-08-17 06:12:18 UTC"
+      "last_commit": "2026-08-17 06:12:18 UTC",
+      "tags": [
+        "Method"
+      ]
     },
     {
       "id": "359099962",
@@ -307,11 +357,13 @@
       "date": "2021-04-18",
       "year": "2021",
       "authors": "lmmx",
-      "category": "Dataset",
       "summary": "This repository provides tools and models for dewarping scanned page images, correcting geometric distortions to facilitate accurate optical character recognition and document layout analysis.",
       "stars": 239,
       "forks": 24,
-      "last_commit": "2026-08-20 12:18:34 UTC"
+      "last_commit": "2026-08-20 12:18:34 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "848318725",
@@ -321,11 +373,13 @@
       "date": "2024-08-27",
       "year": "2024",
       "authors": "jiangnanboy",
-      "category": "Method",
       "summary": "Provides a method for dewarping document images to correct geometric distortions, facilitating subsequent analysis and OCR.",
       "stars": 140,
       "forks": 21,
-      "last_commit": "2024-08-27 14:45:24 UTC"
+      "last_commit": "2024-08-27 14:45:24 UTC",
+      "tags": [
+        "Method"
+      ]
     },
     {
       "id": "609841909",
@@ -335,11 +389,13 @@
       "date": "2023-03-05",
       "year": "2023",
       "authors": "xiaomore",
-      "category": "Tool",
       "summary": "This repository offers tools for dewarping document images, correcting perspective distortions to produce flat, readable page representations.",
       "stars": 69,
       "forks": 3,
-      "last_commit": "2023-11-30 14:48:04 UTC"
+      "last_commit": "2023-11-30 14:48:04 UTC",
+      "tags": [
+        "Tool"
+      ]
     },
     {
       "id": "670176422",
@@ -349,11 +405,13 @@
       "date": "2023-07-24",
       "year": "2023",
       "authors": "FelixHertlein",
-      "category": "Dataset",
       "summary": "The repository provides an inverse 3D model that enables image dewarping by reconstructing flat, undistorted 2D images from distorted photographs.",
       "stars": 61,
       "forks": 4,
-      "last_commit": "2024-02-07 16:14:43 UTC"
+      "last_commit": "2024-02-07 16:14:43 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "896818595",
@@ -363,11 +421,13 @@
       "date": "2024-12-01",
       "year": "2024",
       "authors": "FelixHertlein",
-      "category": "Dataset",
       "summary": "The repository focuses on matching documents by applying image dewarping techniques to correct distortions in scanned pages.",
       "stars": 55,
       "forks": 3,
-      "last_commit": "2025-07-01 15:14:54 UTC"
+      "last_commit": "2025-07-01 15:14:54 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "658543238",
@@ -377,11 +437,13 @@
       "date": "2023-06-26",
       "year": "2023",
       "authors": "irisXcoding",
-      "category": "Dataset",
       "summary": "The repository 'irisXcoding/DocReal' lacks a provided description or abstract, making it impossible to confirm its relation to image dewarping. Without explicit content confirming its purpose, it cannot be definitively categorized under 'Image Dewarping'.",
       "stars": 30,
       "forks": 1,
-      "last_commit": "2023-06-28 03:08:40 UTC"
+      "last_commit": "2023-06-28 03:08:40 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "184686075",
@@ -391,11 +453,13 @@
       "date": "2019-05-03",
       "year": "2019",
       "authors": "dronemapper-io",
-      "category": "Dataset",
       "summary": "The repository implements dewarping algorithms to correct lens distortion in DJI drone imagery, providing undistorted images suitable for further analysis and processing.",
       "stars": 27,
       "forks": 10,
-      "last_commit": "2019-05-03 03:30:40 UTC"
+      "last_commit": "2019-05-03 03:30:40 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "793327787",
@@ -405,11 +469,13 @@
       "date": "2024-04-29",
       "year": "2024",
       "authors": "hanquansanren",
-      "category": "Dataset",
       "summary": "The repository hanquansanren/DIRD is a collection of dewarped image datasets used to train models for correcting perspective distortions in photographs, spanning diverse scenes and objects, and serves as a benchmark for evaluating dewarping algorithms. This dataset provides paired warped and restored images to facilitate supervised learning of dewarping techniques.",
       "stars": 24,
       "forks": 0,
-      "last_commit": "2024-07-15 10:59:55 UTC"
+      "last_commit": "2024-07-15 10:59:55 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "939780534",
@@ -419,11 +485,13 @@
       "date": "2025-02-27",
       "year": "2025",
       "authors": "jsoma",
-      "category": "Dataset",
       "summary": "The repository provides a Python implementation for dewarping images, correcting perspective distortions to generate geometrically accurate, undistorted pictures.",
       "stars": 21,
       "forks": 0,
-      "last_commit": "2025-02-27 14:02:10 UTC"
+      "last_commit": "2025-02-27 14:02:10 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "565142593",
@@ -433,11 +501,13 @@
       "date": "2022-11-12",
       "year": "2022",
       "authors": "TomStog",
-      "category": "Dataset",
       "summary": "TomStog/curved-text-alignment provides methods and implementations for detecting and aligning curved text in images, facilitating accurate OCR on deformed or non‑planar surfaces.",
       "stars": 21,
       "forks": 4,
-      "last_commit": "2025-09-02 17:06:31 UTC"
+      "last_commit": "2025-09-02 17:06:31 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "238827282",
@@ -447,11 +517,13 @@
       "date": "2020-02-07",
       "year": "2020",
       "authors": "ma-chengyuan",
-      "category": "Survey",
       "summary": "I’m sorry, but I need the topic, title, and description/abstract of the item you’d like me to categorize in order to proceed.",
       "stars": 19,
       "forks": 1,
-      "last_commit": "2023-01-05 06:40:10 UTC"
+      "last_commit": "2023-01-05 06:40:10 UTC",
+      "tags": [
+        "Survey"
+      ]
     },
     {
       "id": "636589977",
@@ -461,11 +533,13 @@
       "date": "2023-05-05",
       "year": "2023",
       "authors": "NatLee",
-      "category": "Dataset",
       "summary": "The repository implements fisheye lens distortion correction (a form of image dewarping) using OpenCV to rectify images captured by fisheye cameras, converting distorted hemispherical views into planar representations for applications like surveillance or 3D reconstruction.",
       "stars": 16,
       "forks": 1,
-      "last_commit": "2023-05-07 13:59:13 UTC"
+      "last_commit": "2023-05-07 13:59:13 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "261184643",
@@ -475,11 +549,13 @@
       "date": "2020-05-04",
       "year": "2020",
       "authors": "yuhang2685",
-      "category": "Dataset",
       "summary": "The repository provides code and resources for dewarping images captured with fisheye lenses, correcting radial distortion to produce undistorted, rectilinear images.",
       "stars": 9,
       "forks": 0,
-      "last_commit": "2020-12-23 16:14:55 UTC"
+      "last_commit": "2020-12-23 16:14:55 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "129667763",
@@ -489,11 +565,13 @@
       "date": "2018-04-16",
       "year": "2018",
       "authors": "Tamuel",
-      "category": "Dataset",
       "summary": "This repository provides tools and code for correcting fisheye lens distortion in images, converting them into undistorted, dewarped representations.",
       "stars": 8,
       "forks": 2,
-      "last_commit": "2019-02-02 16:21:23 UTC"
+      "last_commit": "2019-02-02 16:21:23 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "582014929",
@@ -503,11 +581,13 @@
       "date": "2022-12-25",
       "year": "2022",
       "authors": "ImageProcessing-ElectronicPublications",
-      "category": "Dataset",
       "summary": "This repository provides tools for dewarping scanned or photographed page images to restore their original layout, focusing on correcting geometric distortions and perspective issues in image processing.",
       "stars": 8,
       "forks": 2,
-      "last_commit": "2022-12-25 10:07:42 UTC"
+      "last_commit": "2022-12-25 10:07:42 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "309476752",
@@ -517,11 +597,13 @@
       "date": "2020-11-02",
       "year": "2020",
       "authors": "xtile",
-      "category": "Dataset",
       "summary": "A Python repository implementing fisheye dewarping algorithms that converts distorted circular images into undistorted planar views.",
       "stars": 8,
       "forks": 0,
-      "last_commit": "2019-08-19 16:20:40 UTC"
+      "last_commit": "2019-08-19 16:20:40 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "143910695",
@@ -531,11 +613,13 @@
       "date": "2018-08-07",
       "year": "2018",
       "authors": "joeypatino",
-      "category": "Dataset",
       "summary": "joeypatino/swiftvision is a Swift-based library that provides tools for image dewarping, enabling precise correction of distorted images captured by cameras.",
       "stars": 8,
       "forks": 1,
-      "last_commit": "2023-04-05 23:54:11 UTC"
+      "last_commit": "2023-04-05 23:54:11 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "462426177",
@@ -545,11 +629,13 @@
       "date": "2022-02-22",
       "year": "2022",
       "authors": "LukeIngram",
-      "category": "Survey",
       "summary": "The paper explores how large language models can enhance financial statement analysis by integrating vision-language pre-training, chain-of-thought reasoning, tool use, and autonomous agents, presenting a novel framework for extracting structured information and enabling interactive agent-driven insights.",
       "stars": 4,
       "forks": 0,
-      "last_commit": "2023-12-11 00:55:24 UTC"
+      "last_commit": "2023-12-11 00:55:24 UTC",
+      "tags": [
+        "Survey"
+      ]
     },
     {
       "id": "250197926",
@@ -559,11 +645,13 @@
       "date": "2020-03-26",
       "year": "2020",
       "authors": "Abelo9996",
-      "category": "Method",
       "summary": "The repository likely contains resources or code for performing image dewarping, which involves correcting geometric distortions in scanned or captured images to restore their original shape and perspective.",
       "stars": 3,
       "forks": 0,
-      "last_commit": "2022-07-24 03:04:17 UTC"
+      "last_commit": "2022-07-24 03:04:17 UTC",
+      "tags": [
+        "Method"
+      ]
     },
     {
       "id": "1305665722",
@@ -573,11 +661,13 @@
       "date": "2026-07-19",
       "year": "2026",
       "authors": "PINTO0309",
-      "category": "Dataset",
       "summary": "The paper introduces a non‑machine‑learning technique for dewarping document images by leveraging extracted text lines and line segments to correct geometric distortions.",
       "stars": 3,
       "forks": 0,
-      "last_commit": "2026-07-19 11:56:08 UTC"
+      "last_commit": "2026-07-19 11:56:08 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "155342320",
@@ -587,11 +677,13 @@
       "date": "2018-10-30",
       "year": "2018",
       "authors": "EthanPhan",
-      "category": "Tool",
       "summary": "The EthanPhan/document_dewarp repository implements a method for image dewarping, specifically targeted at correcting distortions in document scans, offering code and utilities to restore flat, undistorted views of document images.",
       "stars": 2,
       "forks": 4,
-      "last_commit": "2018-10-30 07:29:26 UTC"
+      "last_commit": "2018-10-30 07:29:26 UTC",
+      "tags": [
+        "Tool"
+      ]
     },
     {
       "id": "157742180",
@@ -601,11 +693,13 @@
       "date": "2018-11-15",
       "year": "2018",
       "authors": "ImageProcessing-ElectronicPublications",
-      "category": "Survey",
       "summary": "The repository is dedicated to dewarping images, providing tools and methods to correct geometric distortions in scanned or photographed documents to restore their original layout.",
       "stars": 2,
       "forks": 0,
-      "last_commit": "2022-12-27 00:29:32 UTC"
+      "last_commit": "2022-12-27 00:29:32 UTC",
+      "tags": [
+        "Survey"
+      ]
     },
     {
       "id": "279414648",
@@ -615,11 +709,13 @@
       "date": "2020-07-13",
       "year": "2020",
       "authors": "gitgamut",
-      "category": "Dataset",
       "summary": "This repository provides code and documentation for image dewarping, which involves correcting geometric distortions in images—such as scanned pages or photographed documents—to restore their original layout using perspective transformation and related techniques.",
       "stars": 2,
       "forks": 0,
-      "last_commit": "2020-07-15 23:32:22 UTC"
+      "last_commit": "2020-07-15 23:32:22 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "242769167",
@@ -629,11 +725,13 @@
       "date": "2020-02-24",
       "year": "2020",
       "authors": "ShefBots",
-      "category": "Dataset",
       "summary": "The repository focuses on creating and curating datasets for 360° image dewarping, providing tools and utilities to generate paired spherical and rectified image collections for training and evaluating deep learning models.\nIt serves as a resource for researchers developing methods to convert equirectangular 360-degree images into standard perspective views.",
       "stars": 2,
       "forks": 0,
-      "last_commit": "2024-01-27 19:22:01 UTC"
+      "last_commit": "2024-01-27 19:22:01 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "581675891",
@@ -643,11 +741,13 @@
       "date": "2022-12-23",
       "year": "2022",
       "authors": "ImageProcessing-ElectronicPublications",
-      "category": "Dataset",
       "summary": "A curated collection of scanned page images designed for evaluating and demonstrating page dewarping methods that rectify geometric distortions in electronic publications.",
       "stars": 1,
       "forks": 0,
-      "last_commit": "2022-12-23 23:30:35 UTC"
+      "last_commit": "2022-12-23 23:30:35 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "1311702239",
@@ -657,11 +757,13 @@
       "date": "2026-07-25",
       "year": "2026",
       "authors": "zz1231me",
-      "category": "Dataset",
       "summary": "The repository offers a Python tool for converting phone-captured document or board images into high-quality, scanner-like results through auto-detection, deskewing, dewarping, shadow and glare removal, with optional Deep Learning backends, usable via CLI, web UI, or a library.",
       "stars": 0,
       "forks": 0,
-      "last_commit": "2026-07-25 07:58:33 UTC"
+      "last_commit": "2026-07-25 07:58:33 UTC",
+      "tags": [
+        "Dataset"
+      ]
     },
     {
       "id": "1301305539",
@@ -671,11 +773,13 @@
       "date": "2026-07-15",
       "year": "2026",
       "authors": "bsiku3622",
-      "category": "Dataset",
       "summary": "This repository hosts a pipeline that dewarps scanned images of curved documents using UVDoc field extraction and OpenCV filters, and provides a React web interface with an AI-based glare removal test bench.",
       "stars": 0,
       "forks": 0,
-      "last_commit": "2026-07-15 06:59:15 UTC"
+      "last_commit": "2026-07-15 06:59:15 UTC",
+      "tags": [
+        "Dataset"
+      ]
     }
   ]
 }

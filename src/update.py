@@ -135,19 +135,24 @@ def run_pipeline(
     def process_item(item: Entry) -> Entry:
         logger.info(f"Analyzing: {item['title']}")
         
+        allowed_tags = topic.get('tags', topic.get('categories', ['Uncategorized']))
         schema = {
             "type": "object",
             "properties": {
-                "category": {
-                    "type": "string",
-                    "enum": topic['categories']
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": allowed_tags
+                    },
+                    "description": "1 to 3 relevant tags from the allowed tags list."
                 },
                 "summary": {
                     "type": "string",
                     "description": "A very brief 1-2 sentence summary."
                 }
             },
-            "required": ["category", "summary"],
+            "required": ["tags", "summary"],
             "additionalProperties": False
         }
         
@@ -159,13 +164,18 @@ def run_pipeline(
             "CategorizationResult"
         )
         
-        cat = result.get('category', 'Uncategorized')
-        if cat not in topic['categories']:
-            cat = 'Uncategorized'
+        res_tags = result.get('tags', [])
+        if isinstance(res_tags, str):
+            res_tags = [res_tags]
+        valid_tags = [t for t in res_tags if t in allowed_tags]
+        if not valid_tags:
+            valid_tags = ['Uncategorized']
             
         summary = result.get('summary', 'Error generating summary.')
         
-        return {**item, 'category': cat, 'summary': summary, 'description': None} # type: ignore
+        item_dict = dict(item)
+        item_dict.pop('category', None)
+        return {**item_dict, 'tags': valid_tags, 'summary': summary, 'description': None} # type: ignore
 
     if items_to_process:
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
@@ -179,6 +189,13 @@ def run_pipeline(
         for pe in processed_entries:
             entry_map[pe['id']] = pe
         db['entries'] = list(entry_map.values())
+
+    # Clean up legacy 'category' field from all database entries and ensure 'tags' is set
+    for e in db.get('entries', []):
+        if 'category' in e:
+            if 'tags' not in e or not e['tags']:
+                e['tags'] = [e['category']]
+            del e['category']
 
     # Enrich all entries with GitHub statistics (stars, forks, last commit) in a single batch query
     db['entries'] = enrich_github_stats(db['entries'], fetch_batch_repo_stats)
