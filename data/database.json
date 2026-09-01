@@ -75,8 +75,8 @@
       "authors": "",
       "summary": "DewarpNet introduces a stacked 3D‑2D regression network that predicts per‑pixel warp maps to restore scanned document geometry, enabling precise text extraction and downstream analysis.",
       "date": "2019",
-      "stars": 624,
-      "forks": 107,
+      "stars": 625,
+      "forks": 106,
       "last_commit": "2024-11-10 18:31:01 UTC",
       "tags": [
         "Dataset"
@@ -337,7 +337,7 @@
       "year": "2017",
       "authors": "taeho-kil",
       "summary": "The repository provides a method and implementation for dewarping scanned document images, correcting geometric distortions to produce flat, readable images suitable for downstream processing such as OCR.",
-      "stars": 429,
+      "stars": 430,
       "forks": 53,
       "last_commit": "2019-09-30 15:22:01 UTC",
       "tags": [
@@ -353,7 +353,7 @@
       "year": "2023",
       "authors": "ZZZHANG-jx",
       "summary": "Image dewarping corrects geometric distortions to produce rectified images.",
-      "stars": 399,
+      "stars": 400,
       "forks": 26,
       "last_commit": "2026-08-17 06:12:18 UTC",
       "tags": [
@@ -370,8 +370,8 @@
       "authors": "lmmx",
       "summary": "The repository offers tools and models to dewarp scanned page images, correcting geometric distortions so that optical character recognition and document layout analysis can be performed more accurately.",
       "stars": 239,
-      "forks": 24,
-      "last_commit": "2026-08-20 12:18:34 UTC",
+      "forks": 23,
+      "last_commit": "2026-08-31 18:31:05 UTC",
       "tags": [
         "Tool"
       ]
@@ -385,8 +385,8 @@
       "year": "2024",
       "authors": "jiangnanboy",
       "summary": "The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.",
-      "stars": 140,
-      "forks": 21,
+      "stars": 141,
+      "forks": 23,
       "last_commit": "2024-08-27 14:45:24 UTC",
       "tags": [
         "Dataset",
@@ -402,7 +402,7 @@
       "year": "2023",
       "authors": "xiaomore",
       "summary": "The repository provides tools that correct perspective distortions in document images, turning them into flat, readable pages.",
-      "stars": 69,
+      "stars": 70,
       "forks": 3,
       "last_commit": "2023-11-30 14:48:04 UTC",
       "tags": [
@@ -678,7 +678,7 @@
       "date": "2026-07-19",
       "year": "2026",
       "authors": "PINTO0309",
-      "stars": 3,
+      "stars": 4,
       "forks": 0,
       "last_commit": "2026-07-19 11:56:08 UTC",
       "tags": [
@@ -803,6 +803,24 @@
         "Survey",
         "Dataset"
       ]
+    },
+    {
+      "id": "1343718933",
+      "title": "FarhanLodi/EasyImageSharp",
+      "paper_url": "",
+      "code_url": "https://github.com/FarhanLodi/EasyImageSharp",
+      "date": "2026-08-23",
+      "year": "2026",
+      "authors": "FarhanLodi",
+      "stars": 2,
+      "forks": 1,
+      "last_commit": "2026-08-26 04:15:29 UTC",
+      "tags": [
+        "Dataset",
+        "Method",
+        "Tool"
+      ],
+      "summary": "EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies."
     }
   ]
 }
