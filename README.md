@@ -2,7 +2,7 @@
 
 [![Interactive Search & Filter](https://img.shields.io/badge/Interactive_Search_&_Filter-Live_on_GitHub_Pages-6374ff?style=for-the-badge&logo=github&logoColor=white)](https://phonhay103.github.io/dewarp/)
 
-This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**. 
+This repository is automatically updated monthly with the latest papers and repositories related to **Image Dewarping**.
 
 💡 **Tip:** Reading a long README.md can be difficult. You can use the [**Interactive Dewarping Hub**](https://phonhay103.github.io/dewarp/) to easily search, filter by tags, sort by stars, and auto-generate BibTeX citation code with just one click!
 
@@ -56,6 +56,12 @@ This repository is automatically updated monthly with the latest papers and repo
   - Survey on spherical image dewarping techniques covering preprocessing, feature learning, and application-specific methods.
 
 ## Method
+- **FarhanLodi/EasyImageSharp** (2026)
+  - Code: https://github.com/FarhanLodi/EasyImageSharp
+  - Tags: Dataset, Method, Tool
+  - Stars: 2 | Forks: 1 | Last Commit: 2026-08-26 04:15:29 UTC
+  - EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies.
+
 - **TADoc: Robust Time-Aware Document Image Dewarping** (2025)
   - Paper: http://arxiv.org/abs/2508.06988v1
   - Tags: Tool, Survey, Method
@@ -75,7 +81,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **jiangnanboy/Doc-Image-Tool** (2024)
   - Code: https://github.com/jiangnanboy/Doc-Image-Tool
   - Tags: Dataset, Method
-  - Stars: 140 | Forks: 21 | Last Commit: 2024-08-27 14:45:24 UTC
+  - Stars: 141 | Forks: 23 | Last Commit: 2024-08-27 14:45:24 UTC
   - The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.
 
 - **MataDoc: Margin and Text Aware Document Dewarping for Arbitrary Boundary** (2023)
@@ -128,6 +134,12 @@ This repository is automatically updated monthly with the latest papers and repo
   - Tags: Dataset
   - RectiNet-v2 presents a stacked deep learning architecture that rectifies and dewarps curved, warped document pages into flat, distortion-free images, improving the accuracy of downstream OCR tasks.
 
+- **FarhanLodi/EasyImageSharp** (2026)
+  - Code: https://github.com/FarhanLodi/EasyImageSharp
+  - Tags: Dataset, Method, Tool
+  - Stars: 2 | Forks: 1 | Last Commit: 2026-08-26 04:15:29 UTC
+  - EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies.
+
 - **zz1231me/scan** (2026)
   - Code: https://github.com/zz1231me/scan
   - Tags: Dataset
@@ -137,7 +149,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **PINTO0309/doc-dewarping** (2026)
   - Code: https://github.com/PINTO0309/doc-dewarping
   - Tags: Dataset
-  - Stars: 3 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
+  - Stars: 4 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
   - A sample dataset description for image analysis tasks.
 
 - **bsiku3622/image-scanning-pipeline** (2026)
@@ -181,7 +193,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **jiangnanboy/Doc-Image-Tool** (2024)
   - Code: https://github.com/jiangnanboy/Doc-Image-Tool
   - Tags: Dataset, Method
-  - Stars: 140 | Forks: 21 | Last Commit: 2024-08-27 14:45:24 UTC
+  - Stars: 141 | Forks: 23 | Last Commit: 2024-08-27 14:45:24 UTC
   - The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.
 
 - **hanquansanren/DIRD** (2024)
@@ -215,7 +227,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **xiaomore/Document-Image-Dewarping** (2023)
   - Code: https://github.com/xiaomore/Document-Image-Dewarping
   - Tags: Dataset
-  - Stars: 69 | Forks: 3 | Last Commit: 2023-11-30 14:48:04 UTC
+  - Stars: 70 | Forks: 3 | Last Commit: 2023-11-30 14:48:04 UTC
   - The repository provides tools that correct perspective distortions in document images, turning them into flat, readable pages.
 
 - **ImageProcessing-ElectronicPublications/pagedewarp** (2022)
@@ -318,7 +330,7 @@ This repository is automatically updated monthly with the latest papers and repo
   - Paper: https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf
   - Code: https://github.com/cvlab-stonybrook/DewarpNet
   - Tags: Dataset
-  - Stars: 624 | Forks: 107 | Last Commit: 2024-11-10 18:31:01 UTC
+  - Stars: 625 | Forks: 106 | Last Commit: 2024-11-10 18:31:01 UTC
   - DewarpNet introduces a stacked 3D‑2D regression network that predicts per‑pixel warp maps to restore scanned document geometry, enabling precise text extraction and downstream analysis.
 
 - **Docuwarp (2019)** (2019)
@@ -354,7 +366,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **taeho-kil/Document-Image-Dewarping** (2017)
   - Code: https://github.com/taeho-kil/Document-Image-Dewarping
   - Tags: Dataset
-  - Stars: 429 | Forks: 53 | Last Commit: 2019-09-30 15:22:01 UTC
+  - Stars: 430 | Forks: 53 | Last Commit: 2019-09-30 15:22:01 UTC
   - The repository provides a method and implementation for dewarping scanned document images, correcting geometric distortions to produce flat, readable images suitable for downstream processing such as OCR.
 
 - **Robust Document Image Dewarping Method Using Text-Lines and Line Segments (2017)** (2017)
@@ -382,6 +394,12 @@ This repository is automatically updated monthly with the latest papers and repo
   - The paper presents a global optimization approach to correct geometric distortions in document images, improving dewarping accuracy through systematic image processing techniques.
 
 ## Tool
+- **FarhanLodi/EasyImageSharp** (2026)
+  - Code: https://github.com/FarhanLodi/EasyImageSharp
+  - Tags: Dataset, Method, Tool
+  - Stars: 2 | Forks: 1 | Last Commit: 2026-08-26 04:15:29 UTC
+  - EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies.
+
 - **TADoc: Robust Time-Aware Document Image Dewarping** (2025)
   - Paper: http://arxiv.org/abs/2508.06988v1
   - Tags: Tool, Survey, Method
@@ -401,7 +419,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **lmmx/page-dewarp** (2021)
   - Code: https://github.com/lmmx/page-dewarp
   - Tags: Tool
-  - Stars: 239 | Forks: 24 | Last Commit: 2026-08-20 12:18:34 UTC
+  - Stars: 239 | Forks: 23 | Last Commit: 2026-08-31 18:31:05 UTC
   - The repository offers tools and models to dewarp scanned page images, correcting geometric distortions so that optical character recognition and document layout analysis can be performed more accurately.
 
 - **gitgamut/image_dewarping_project** (2020)
@@ -420,7 +438,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **ZZZHANG-jx/Recommendations-Document-Image-Processing** (2023)
   - Code: https://github.com/ZZZHANG-jx/Recommendations-Document-Image-Processing
   - Tags: Uncategorized
-  - Stars: 399 | Forks: 26 | Last Commit: 2026-08-17 06:12:18 UTC
+  - Stars: 400 | Forks: 26 | Last Commit: 2026-08-17 06:12:18 UTC
   - Image dewarping corrects geometric distortions to produce rectified images.
 
 - **irisXcoding/DocReal** (2023)
