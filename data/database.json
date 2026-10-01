@@ -9,7 +9,7 @@
       "authors": "",
       "summary": "The DFE model employs a fully convolutional network to estimate dense displacement flow fields, enabling accurate dewarping of document images and thus improving text recognition performance.",
       "date": "2021",
-      "stars": 195,
+      "stars": 196,
       "forks": 40,
       "last_commit": "2022-12-04 13:05:41 UTC",
       "tags": [
@@ -27,7 +27,7 @@
       "authors": "",
       "summary": "DocTr introduces a transformer‑based architecture for geometric unwarping and illumination correction of document images, tackling typical issues in dewarped document processing.",
       "date": "2021",
-      "stars": 443,
+      "stars": 445,
       "forks": 59,
       "last_commit": "2026-07-10 00:32:34 UTC",
       "tags": [
@@ -45,7 +45,7 @@
       "authors": "",
       "summary": "The study introduces RubricBasedQA, an automatically generated, criterion-referenced QA dataset that evaluates large language models using structured rubrics, facilitating consistent assessment of their reasoning abilities across multi-hop, compositional, and long-tailed examples.",
       "date": "2020",
-      "stars": 109,
+      "stars": 110,
       "forks": 10,
       "last_commit": "2022-11-02 10:56:48 UTC",
       "tags": [
@@ -75,7 +75,7 @@
       "authors": "",
       "summary": "DewarpNet introduces a stacked 3D‑2D regression network that predicts per‑pixel warp maps to restore scanned document geometry, enabling precise text extraction and downstream analysis.",
       "date": "2019",
-      "stars": 625,
+      "stars": 628,
       "forks": 106,
       "last_commit": "2024-11-10 18:31:01 UTC",
       "tags": [
@@ -337,7 +337,7 @@
       "year": "2017",
       "authors": "taeho-kil",
       "summary": "The repository provides a method and implementation for dewarping scanned document images, correcting geometric distortions to produce flat, readable images suitable for downstream processing such as OCR.",
-      "stars": 430,
+      "stars": 434,
       "forks": 53,
       "last_commit": "2019-09-30 15:22:01 UTC",
       "tags": [
@@ -353,9 +353,9 @@
       "year": "2023",
       "authors": "ZZZHANG-jx",
       "summary": "Image dewarping corrects geometric distortions to produce rectified images.",
-      "stars": 400,
+      "stars": 405,
       "forks": 26,
-      "last_commit": "2026-08-17 06:12:18 UTC",
+      "last_commit": "2026-09-17 07:50:48 UTC",
       "tags": [
         "Uncategorized"
       ]
@@ -369,9 +369,9 @@
       "year": "2021",
       "authors": "lmmx",
       "summary": "The repository offers tools and models to dewarp scanned page images, correcting geometric distortions so that optical character recognition and document layout analysis can be performed more accurately.",
-      "stars": 239,
-      "forks": 23,
-      "last_commit": "2026-08-31 18:31:05 UTC",
+      "stars": 247,
+      "forks": 25,
+      "last_commit": "2026-09-28 18:35:29 UTC",
       "tags": [
         "Tool"
       ]
@@ -385,8 +385,8 @@
       "year": "2024",
       "authors": "jiangnanboy",
       "summary": "The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.",
-      "stars": 141,
-      "forks": 23,
+      "stars": 143,
+      "forks": 24,
       "last_commit": "2024-08-27 14:45:24 UTC",
       "tags": [
         "Dataset",
@@ -402,7 +402,7 @@
       "year": "2023",
       "authors": "xiaomore",
       "summary": "The repository provides tools that correct perspective distortions in document images, turning them into flat, readable pages.",
-      "stars": 70,
+      "stars": 72,
       "forks": 3,
       "last_commit": "2023-11-30 14:48:04 UTC",
       "tags": [
@@ -453,7 +453,7 @@
       "year": "2023",
       "authors": "irisXcoding",
       "summary": "The repository lacks a description or abstract, making it impossible to confirm its purpose; therefore, it cannot be assigned any of the provided tags, including 'Image Dewarping'.",
-      "stars": 30,
+      "stars": 32,
       "forks": 1,
       "last_commit": "2023-06-28 03:08:40 UTC",
       "tags": [
@@ -469,7 +469,7 @@
       "year": "2019",
       "authors": "dronemapper-io",
       "summary": "The repository implements dewarping algorithms that correct lens distortion in DJI drone imagery, producing undistorted images for further analysis.",
-      "stars": 27,
+      "stars": 28,
       "forks": 10,
       "last_commit": "2019-05-03 03:30:40 UTC",
       "tags": [
@@ -501,7 +501,7 @@
       "year": "2025",
       "authors": "jsoma",
       "summary": "This repository implements a Python pipeline to dewarp images, rectifying perspective distortions to produce geometrically accurate, undistorted pictures.",
-      "stars": 21,
+      "stars": 23,
       "forks": 0,
       "last_commit": "2025-02-27 14:02:10 UTC",
       "tags": [
@@ -598,7 +598,7 @@
       "year": "2022",
       "authors": "ImageProcessing-ElectronicPublications",
       "summary": "The repository provides tools to dewarp scanned or photographed page images, correcting geometric and perspective distortions to restore their original layout.",
-      "stars": 8,
+      "stars": 9,
       "forks": 2,
       "last_commit": "2022-12-25 10:07:42 UTC",
       "tags": [
@@ -678,7 +678,7 @@
       "date": "2026-07-19",
       "year": "2026",
       "authors": "PINTO0309",
-      "stars": 4,
+      "stars": 6,
       "forks": 0,
       "last_commit": "2026-07-19 11:56:08 UTC",
       "tags": [
@@ -812,15 +812,33 @@
       "date": "2026-08-23",
       "year": "2026",
       "authors": "FarhanLodi",
-      "stars": 2,
+      "stars": 3,
       "forks": 1,
-      "last_commit": "2026-08-26 04:15:29 UTC",
+      "last_commit": "2026-09-04 03:34:28 UTC",
       "tags": [
         "Dataset",
         "Method",
         "Tool"
       ],
       "summary": "EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies."
+    },
+    {
+      "id": "1355235634",
+      "title": "mohamedhamed352/xray-image-processing-pipeline",
+      "paper_url": "",
+      "code_url": "https://github.com/mohamedhamed352/xray-image-processing-pipeline",
+      "date": "2026-09-02",
+      "year": "2026",
+      "authors": "mohamedhamed352",
+      "stars": 0,
+      "forks": 0,
+      "last_commit": "2026-09-02 22:05:13 UTC",
+      "tags": [
+        "Method",
+        "Dataset",
+        "Tool"
+      ],
+      "summary": "A 6-step preprocessing pipeline denoises, dewarps, in paints, applies CLAHE, balances colour, and sharpens corrupted chest X-rays to improve a pretrained pneumonia classifier's input quality."
     }
   ]
 }
