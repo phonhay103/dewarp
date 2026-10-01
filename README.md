@@ -33,14 +33,14 @@ This repository is automatically updated monthly with the latest papers and repo
   - Paper: https://arxiv.org/abs/2110.12942
   - Code: https://github.com/fh2019ustc/doctr
   - Tags: Method, Dataset, Survey
-  - Stars: 443 | Forks: 59 | Last Commit: 2026-07-10 00:32:34 UTC
+  - Stars: 445 | Forks: 59 | Last Commit: 2026-07-10 00:32:34 UTC
   - DocTr introduces a transformer‑based architecture for geometric unwarping and illumination correction of document images, tackling typical issues in dewarped document processing.
 
 - **DFE (FCN Base) - Dewarping Document Image By Displacement Flow Estimation with Fully Convolutional Network (2021)** (2021)
   - Paper: https://arxiv.org/abs/2104.06815
   - Code: https://github.com/gwxie/Dewarping-Document-Image-By-Displacement-Flow-Estimation
   - Tags: Dataset, Survey, Method
-  - Stars: 195 | Forks: 40 | Last Commit: 2022-12-04 13:05:41 UTC
+  - Stars: 196 | Forks: 40 | Last Commit: 2022-12-04 13:05:41 UTC
   - The DFE model employs a fully convolutional network to estimate dense displacement flow fields, enabling accurate dewarping of document images and thus improving text recognition performance.
 
 - **yuhang2685/Fisheye-Dewarping** (2020)
@@ -56,10 +56,16 @@ This repository is automatically updated monthly with the latest papers and repo
   - Survey on spherical image dewarping techniques covering preprocessing, feature learning, and application-specific methods.
 
 ## Method
+- **mohamedhamed352/xray-image-processing-pipeline** (2026)
+  - Code: https://github.com/mohamedhamed352/xray-image-processing-pipeline
+  - Tags: Method, Dataset, Tool
+  - Stars: 0 | Forks: 0 | Last Commit: 2026-09-02 22:05:13 UTC
+  - A 6-step preprocessing pipeline denoises, dewarps, in paints, applies CLAHE, balances colour, and sharpens corrupted chest X-rays to improve a pretrained pneumonia classifier's input quality.
+
 - **FarhanLodi/EasyImageSharp** (2026)
   - Code: https://github.com/FarhanLodi/EasyImageSharp
   - Tags: Dataset, Method, Tool
-  - Stars: 2 | Forks: 1 | Last Commit: 2026-08-26 04:15:29 UTC
+  - Stars: 3 | Forks: 1 | Last Commit: 2026-09-04 03:34:28 UTC
   - EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies.
 
 - **TADoc: Robust Time-Aware Document Image Dewarping** (2025)
@@ -81,7 +87,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **jiangnanboy/Doc-Image-Tool** (2024)
   - Code: https://github.com/jiangnanboy/Doc-Image-Tool
   - Tags: Dataset, Method
-  - Stars: 141 | Forks: 23 | Last Commit: 2024-08-27 14:45:24 UTC
+  - Stars: 143 | Forks: 24 | Last Commit: 2024-08-27 14:45:24 UTC
   - The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.
 
 - **MataDoc: Margin and Text Aware Document Dewarping for Arbitrary Boundary** (2023)
@@ -99,14 +105,14 @@ This repository is automatically updated monthly with the latest papers and repo
   - Paper: https://arxiv.org/abs/2110.12942
   - Code: https://github.com/fh2019ustc/doctr
   - Tags: Method, Dataset, Survey
-  - Stars: 443 | Forks: 59 | Last Commit: 2026-07-10 00:32:34 UTC
+  - Stars: 445 | Forks: 59 | Last Commit: 2026-07-10 00:32:34 UTC
   - DocTr introduces a transformer‑based architecture for geometric unwarping and illumination correction of document images, tackling typical issues in dewarped document processing.
 
 - **DFE (FCN Base) - Dewarping Document Image By Displacement Flow Estimation with Fully Convolutional Network (2021)** (2021)
   - Paper: https://arxiv.org/abs/2104.06815
   - Code: https://github.com/gwxie/Dewarping-Document-Image-By-Displacement-Flow-Estimation
   - Tags: Dataset, Survey, Method
-  - Stars: 195 | Forks: 40 | Last Commit: 2022-12-04 13:05:41 UTC
+  - Stars: 196 | Forks: 40 | Last Commit: 2022-12-04 13:05:41 UTC
   - The DFE model employs a fully convolutional network to estimate dense displacement flow fields, enabling accurate dewarping of document images and thus improving text recognition performance.
 
 - **gitgamut/image_dewarping_project** (2020)
@@ -119,7 +125,7 @@ This repository is automatically updated monthly with the latest papers and repo
   - Paper: https://arxiv.org/abs/2007.09824
   - Code: https://github.com/DVLP-CMATERJU/RectiNet
   - Tags: Dataset, Method
-  - Stars: 109 | Forks: 10 | Last Commit: 2022-11-02 10:56:48 UTC
+  - Stars: 110 | Forks: 10 | Last Commit: 2022-11-02 10:56:48 UTC
   - The study introduces RubricBasedQA, an automatically generated, criterion-referenced QA dataset that evaluates large language models using structured rubrics, facilitating consistent assessment of their reasoning abilities across multi-hop, compositional, and long-tailed examples.
 
 - **EthanPhan/document_dewarp** (2018)
@@ -134,10 +140,16 @@ This repository is automatically updated monthly with the latest papers and repo
   - Tags: Dataset
   - RectiNet-v2 presents a stacked deep learning architecture that rectifies and dewarps curved, warped document pages into flat, distortion-free images, improving the accuracy of downstream OCR tasks.
 
+- **mohamedhamed352/xray-image-processing-pipeline** (2026)
+  - Code: https://github.com/mohamedhamed352/xray-image-processing-pipeline
+  - Tags: Method, Dataset, Tool
+  - Stars: 0 | Forks: 0 | Last Commit: 2026-09-02 22:05:13 UTC
+  - A 6-step preprocessing pipeline denoises, dewarps, in paints, applies CLAHE, balances colour, and sharpens corrupted chest X-rays to improve a pretrained pneumonia classifier's input quality.
+
 - **FarhanLodi/EasyImageSharp** (2026)
   - Code: https://github.com/FarhanLodi/EasyImageSharp
   - Tags: Dataset, Method, Tool
-  - Stars: 2 | Forks: 1 | Last Commit: 2026-08-26 04:15:29 UTC
+  - Stars: 3 | Forks: 1 | Last Commit: 2026-09-04 03:34:28 UTC
   - EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies.
 
 - **zz1231me/scan** (2026)
@@ -149,7 +161,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **PINTO0309/doc-dewarping** (2026)
   - Code: https://github.com/PINTO0309/doc-dewarping
   - Tags: Dataset
-  - Stars: 4 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
+  - Stars: 6 | Forks: 0 | Last Commit: 2026-07-19 11:56:08 UTC
   - A sample dataset description for image analysis tasks.
 
 - **bsiku3622/image-scanning-pipeline** (2026)
@@ -176,7 +188,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **jsoma/py-reform** (2025)
   - Code: https://github.com/jsoma/py-reform
   - Tags: Dataset
-  - Stars: 21 | Forks: 0 | Last Commit: 2025-02-27 14:02:10 UTC
+  - Stars: 23 | Forks: 0 | Last Commit: 2025-02-27 14:02:10 UTC
   - This repository implements a Python pipeline to dewarp images, rectifying perspective distortions to produce geometrically accurate, undistorted pictures.
 
 - **Efficient Document Image Dewarping via Hybrid Deep Learning and Cubic Polynomial Geometry Restoration** (2025)
@@ -193,7 +205,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **jiangnanboy/Doc-Image-Tool** (2024)
   - Code: https://github.com/jiangnanboy/Doc-Image-Tool
   - Tags: Dataset, Method
-  - Stars: 141 | Forks: 23 | Last Commit: 2024-08-27 14:45:24 UTC
+  - Stars: 143 | Forks: 24 | Last Commit: 2024-08-27 14:45:24 UTC
   - The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.
 
 - **hanquansanren/DIRD** (2024)
@@ -227,13 +239,13 @@ This repository is automatically updated monthly with the latest papers and repo
 - **xiaomore/Document-Image-Dewarping** (2023)
   - Code: https://github.com/xiaomore/Document-Image-Dewarping
   - Tags: Dataset
-  - Stars: 70 | Forks: 3 | Last Commit: 2023-11-30 14:48:04 UTC
+  - Stars: 72 | Forks: 3 | Last Commit: 2023-11-30 14:48:04 UTC
   - The repository provides tools that correct perspective distortions in document images, turning them into flat, readable pages.
 
 - **ImageProcessing-ElectronicPublications/pagedewarp** (2022)
   - Code: https://github.com/ImageProcessing-ElectronicPublications/pagedewarp
   - Tags: Dataset
-  - Stars: 8 | Forks: 2 | Last Commit: 2022-12-25 10:07:42 UTC
+  - Stars: 9 | Forks: 2 | Last Commit: 2022-12-25 10:07:42 UTC
   - The repository provides tools to dewarp scanned or photographed page images, correcting geometric and perspective distortions to restore their original layout.
 
 - **ImageProcessing-ElectronicPublications/pagedewarp-samples** (2022)
@@ -268,14 +280,14 @@ This repository is automatically updated monthly with the latest papers and repo
   - Paper: https://arxiv.org/abs/2110.12942
   - Code: https://github.com/fh2019ustc/doctr
   - Tags: Method, Dataset, Survey
-  - Stars: 443 | Forks: 59 | Last Commit: 2026-07-10 00:32:34 UTC
+  - Stars: 445 | Forks: 59 | Last Commit: 2026-07-10 00:32:34 UTC
   - DocTr introduces a transformer‑based architecture for geometric unwarping and illumination correction of document images, tackling typical issues in dewarped document processing.
 
 - **DFE (FCN Base) - Dewarping Document Image By Displacement Flow Estimation with Fully Convolutional Network (2021)** (2021)
   - Paper: https://arxiv.org/abs/2104.06815
   - Code: https://github.com/gwxie/Dewarping-Document-Image-By-Displacement-Flow-Estimation
   - Tags: Dataset, Survey, Method
-  - Stars: 195 | Forks: 40 | Last Commit: 2022-12-04 13:05:41 UTC
+  - Stars: 196 | Forks: 40 | Last Commit: 2022-12-04 13:05:41 UTC
   - The DFE model employs a fully convolutional network to estimate dense displacement flow fields, enabling accurate dewarping of document images and thus improving text recognition performance.
 
 - **xtile/py-fisheye-dewarp** (2020)
@@ -312,7 +324,7 @@ This repository is automatically updated monthly with the latest papers and repo
   - Paper: https://arxiv.org/abs/2007.09824
   - Code: https://github.com/DVLP-CMATERJU/RectiNet
   - Tags: Dataset, Method
-  - Stars: 109 | Forks: 10 | Last Commit: 2022-11-02 10:56:48 UTC
+  - Stars: 110 | Forks: 10 | Last Commit: 2022-11-02 10:56:48 UTC
   - The study introduces RubricBasedQA, an automatically generated, criterion-referenced QA dataset that evaluates large language models using structured rubrics, facilitating consistent assessment of their reasoning abilities across multi-hop, compositional, and long-tailed examples.
 
 - **Multistage Curvilinear Coordinate Transform Based Document Image Dewarping using a Novel Quality Estimator (2020)** (2020)
@@ -323,14 +335,14 @@ This repository is automatically updated monthly with the latest papers and repo
 - **dronemapper-io/dji-dewarp** (2019)
   - Code: https://github.com/dronemapper-io/dji-dewarp
   - Tags: Dataset
-  - Stars: 27 | Forks: 10 | Last Commit: 2019-05-03 03:30:40 UTC
+  - Stars: 28 | Forks: 10 | Last Commit: 2019-05-03 03:30:40 UTC
   - The repository implements dewarping algorithms that correct lens distortion in DJI drone imagery, producing undistorted images for further analysis.
 
 - **10. DewarpNet - Single-Image Document Unwarping With Stacked 3D and 2D Regression Networks (2019)** (2019)
   - Paper: https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf
   - Code: https://github.com/cvlab-stonybrook/DewarpNet
   - Tags: Dataset
-  - Stars: 625 | Forks: 106 | Last Commit: 2024-11-10 18:31:01 UTC
+  - Stars: 628 | Forks: 106 | Last Commit: 2024-11-10 18:31:01 UTC
   - DewarpNet introduces a stacked 3D‑2D regression network that predicts per‑pixel warp maps to restore scanned document geometry, enabling precise text extraction and downstream analysis.
 
 - **Docuwarp (2019)** (2019)
@@ -366,7 +378,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **taeho-kil/Document-Image-Dewarping** (2017)
   - Code: https://github.com/taeho-kil/Document-Image-Dewarping
   - Tags: Dataset
-  - Stars: 430 | Forks: 53 | Last Commit: 2019-09-30 15:22:01 UTC
+  - Stars: 434 | Forks: 53 | Last Commit: 2019-09-30 15:22:01 UTC
   - The repository provides a method and implementation for dewarping scanned document images, correcting geometric distortions to produce flat, readable images suitable for downstream processing such as OCR.
 
 - **Robust Document Image Dewarping Method Using Text-Lines and Line Segments (2017)** (2017)
@@ -394,10 +406,16 @@ This repository is automatically updated monthly with the latest papers and repo
   - The paper presents a global optimization approach to correct geometric distortions in document images, improving dewarping accuracy through systematic image processing techniques.
 
 ## Tool
+- **mohamedhamed352/xray-image-processing-pipeline** (2026)
+  - Code: https://github.com/mohamedhamed352/xray-image-processing-pipeline
+  - Tags: Method, Dataset, Tool
+  - Stars: 0 | Forks: 0 | Last Commit: 2026-09-02 22:05:13 UTC
+  - A 6-step preprocessing pipeline denoises, dewarps, in paints, applies CLAHE, balances colour, and sharpens corrupted chest X-rays to improve a pretrained pneumonia classifier's input quality.
+
 - **FarhanLodi/EasyImageSharp** (2026)
   - Code: https://github.com/FarhanLodi/EasyImageSharp
   - Tags: Dataset, Method, Tool
-  - Stars: 2 | Forks: 1 | Last Commit: 2026-08-26 04:15:29 UTC
+  - Stars: 3 | Forks: 1 | Last Commit: 2026-09-04 03:34:28 UTC
   - EasyImageSharp is a fully managed .NET 2D imaging library featuring an optional ONNX add-on for super-resolution and image dewarping, alongside codecs, EXIF support, and document/OCR operators, all under MIT license with no native dependencies.
 
 - **TADoc: Robust Time-Aware Document Image Dewarping** (2025)
@@ -419,7 +437,7 @@ This repository is automatically updated monthly with the latest papers and repo
 - **lmmx/page-dewarp** (2021)
   - Code: https://github.com/lmmx/page-dewarp
   - Tags: Tool
-  - Stars: 239 | Forks: 23 | Last Commit: 2026-08-31 18:31:05 UTC
+  - Stars: 247 | Forks: 25 | Last Commit: 2026-09-28 18:35:29 UTC
   - The repository offers tools and models to dewarp scanned page images, correcting geometric distortions so that optical character recognition and document layout analysis can be performed more accurately.
 
 - **gitgamut/image_dewarping_project** (2020)
@@ -438,13 +456,13 @@ This repository is automatically updated monthly with the latest papers and repo
 - **ZZZHANG-jx/Recommendations-Document-Image-Processing** (2023)
   - Code: https://github.com/ZZZHANG-jx/Recommendations-Document-Image-Processing
   - Tags: Uncategorized
-  - Stars: 400 | Forks: 26 | Last Commit: 2026-08-17 06:12:18 UTC
+  - Stars: 405 | Forks: 26 | Last Commit: 2026-09-17 07:50:48 UTC
   - Image dewarping corrects geometric distortions to produce rectified images.
 
 - **irisXcoding/DocReal** (2023)
   - Code: https://github.com/irisXcoding/DocReal
   - Tags: Uncategorized
-  - Stars: 30 | Forks: 1 | Last Commit: 2023-06-28 03:08:40 UTC
+  - Stars: 32 | Forks: 1 | Last Commit: 2023-06-28 03:08:40 UTC
   - The repository lacks a description or abstract, making it impossible to confirm its purpose; therefore, it cannot be assigned any of the provided tags, including 'Image Dewarping'.
 
 - **Revisiting Document Image Dewarping by Grid Regularization** (2022)
