@@ -1,0 +1,10 @@
+# Secret scanning on every commit (https://github.com/gitleaks/gitleaks).
+# One-time setup per clone:  pre-commit install
+# The hook builds gitleaks with the Go toolchain on first run, so Go must be
+# on PATH; the built binary is cached afterwards.
+# Only staged changes are scanned, and matches are redacted in the output.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
