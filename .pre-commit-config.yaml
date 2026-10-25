@@ -1,9 +1,21 @@
-# Secret scanning on every commit (https://github.com/gitleaks/gitleaks).
+# A small Python script set (src/*.py) with a JSON config and a generated
+# report. There is no project file for `uv run ruff`, and ruff currently
+# reports 67 findings on this tree, so lint is deliberately not a hook yet —
+# fix the tree and add `ruff check src` before it becomes one.
 # One-time setup per clone:  pre-commit install
-# The hook builds gitleaks with the Go toolchain on first run, so Go must be
-# on PATH; the built binary is cached afterwards.
-# Only staged changes are scanned, and matches are redacted in the output.
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: detect-private-key
+
+  # The hook builds gitleaks with the Go toolchain on first run, so Go must be
+  # on PATH; the built binary is cached afterwards. Only the staged diff is
+  # scanned, and matches are redacted in the output.
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.1
     hooks:
