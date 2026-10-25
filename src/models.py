@@ -1,5 +1,5 @@
-from typing import TypedDict, List, Optional
-from datetime import datetime
+from typing import TypedDict
+
 
 class Entry(TypedDict, total=False):
     id: str
@@ -9,12 +9,12 @@ class Entry(TypedDict, total=False):
     date: str
     year: str
     authors: str
-    description: Optional[str]
-    tags: Optional[List[str]]
-    summary: Optional[str]
-    stars: Optional[int]
-    forks: Optional[int]
-    last_commit: Optional[str]
+    description: str | None
+    tags: list[str] | None
+    summary: str | None
+    stars: int | None
+    forks: int | None
+    last_commit: str | None
 
 class TopicQuery(TypedDict):
     arxiv: str
@@ -23,12 +23,12 @@ class TopicQuery(TypedDict):
 class Topic(TypedDict):
     name: str
     queries: TopicQuery
-    tags: List[str]
+    tags: list[str]
 
 class LlmConfig(TypedDict, total=False):
     model: str
-    fallback_models: List[str]
-    models: List[str]
+    fallback_models: list[str]
+    models: list[str]
     system_prompt: str
     user_prompt_template: str
 class Settings(TypedDict, total=False):
@@ -37,8 +37,8 @@ class Settings(TypedDict, total=False):
 
 class AppConfig(TypedDict):
     settings: Settings
-    topics: List[Topic]
+    topics: list[Topic]
     llm: LlmConfig
 
 class Database(TypedDict):
-    entries: List[Entry]
+    entries: list[Entry]

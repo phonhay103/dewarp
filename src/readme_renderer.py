@@ -1,6 +1,7 @@
-from typing import Dict, Any
+from typing import Any
 
-def render_readme(config: Dict[str, Any], db: Dict[str, Any]) -> str:
+
+def render_readme(config: dict[str, Any], db: dict[str, Any]) -> str:
     """
     Renders the data into a Markdown formatted string categorized by tags.
     
@@ -15,16 +16,16 @@ def render_readme(config: Dict[str, Any], db: Dict[str, Any]) -> str:
     tags = topic.get("tags", topic.get("categories", ["Uncategorized"]))
     
     md = f"# {topic['name']} Papers & Repos\n\n"
-    md += f"[![Interactive Search & Filter](https://img.shields.io/badge/Interactive_Search_&_Filter-Live_on_GitHub_Pages-6374ff?style=for-the-badge&logo=github&logoColor=white)](https://phonhay103.github.io/dewarp/)\n\n"
+    md += "[![Interactive Search & Filter](https://img.shields.io/badge/Interactive_Search_&_Filter-Live_on_GitHub_Pages-6374ff?style=for-the-badge&logo=github&logoColor=white)](https://phonhay103.github.io/dewarp/)\n\n"
     md += f"This repository is automatically updated monthly with the latest papers and repositories related to **{topic['name']}**.\n\n"
-    md += f"💡 **Tip:** Reading a long README.md can be difficult. You can use the [**Interactive Dewarping Hub**](https://phonhay103.github.io/dewarp/) to easily search, filter by tags, sort by stars, and auto-generate BibTeX citation code with just one click!\n\n"
+    md += "💡 **Tip:** Reading a long README.md can be difficult. You can use the [**Interactive Dewarping Hub**](https://phonhay103.github.io/dewarp/) to easily search, filter by tags, sort by stars, and auto-generate BibTeX citation code with just one click!\n\n"
 
     entries = db.get("entries", [])
     
     # Normalize tags on all entries for backwards compatibility
     for entry in entries:
         if "tags" not in entry or not entry["tags"]:
-            if "category" in entry and entry["category"]:
+            if entry.get("category"):
                 entry["tags"] = [entry["category"]]
             else:
                 entry["tags"] = ["Uncategorized"]
@@ -38,7 +39,7 @@ def render_readme(config: Dict[str, Any], db: Dict[str, Any]) -> str:
         md += f"## {tag}\n"
         
         # Sort items: date/year descending, stars descending
-        def sort_key(item: Dict[str, Any]) -> tuple:
+        def sort_key(item: dict[str, Any]) -> tuple:
             date_str = str(item.get('date') or item.get('year') or '0000')
             stars = item.get('stars') if item.get('stars') is not None else -1
             return (date_str, stars)

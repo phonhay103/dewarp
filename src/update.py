@@ -1,14 +1,16 @@
-import os
 import argparse
+import concurrent.futures
 import json
 import logging
+import os
+from collections.abc import Callable
 from datetime import datetime, timedelta
-import concurrent.futures
-from typing import Any, List, Tuple, Callable, Dict
-from models import AppConfig, Database, Entry, Topic
+from typing import Any
+
 from api_arxiv import fetch_arxiv
-from api_github import fetch_github, fetch_batch_repo_stats, get_github_token
+from api_github import fetch_batch_repo_stats, fetch_github, get_github_token
 from api_openrouter import analyze_with_llm
+from models import AppConfig, Database, Entry, Topic
 from readme_renderer import render_readme
 
 logging.basicConfig(
@@ -41,7 +43,7 @@ def write_file(filepath: str, content: str) -> None:
         f.write(content)
 
 
-def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str]], Dict[str, dict]]) -> Tuple[List[Entry], int]:
+def enrich_github_stats(entries: list[Entry], fetch_batch_fn: Callable[[list[str]], dict[str, dict]]) -> tuple[list[Entry], int]:
     """Enriches entries containing a GitHub repository URL with stars, forks, and last commit timestamp in a single batch query."""
     github_entries = [e for e in entries if e.get('code_url') and 'github.com/' in e['code_url']]
     if not github_entries:
@@ -77,9 +79,9 @@ def enrich_github_stats(entries: List[Entry], fetch_batch_fn: Callable[[List[str
     return list(entry_map.values()), len(stats_map)
 
 def run_pipeline(
-    fetch_papers: Callable[[str, datetime], List[Entry]],
-    fetch_repos: Callable[[str, datetime], List[Entry]],
-    analyze_item: Callable[[Entry, AppConfig, Topic, dict[str, Any], str], Tuple[dict[str, Any], dict[str, Any]]],
+    fetch_papers: Callable[[str, datetime], list[Entry]],
+    fetch_repos: Callable[[str, datetime], list[Entry]],
+    analyze_item: Callable[[Entry, AppConfig, Topic, dict[str, Any], str], tuple[dict[str, Any], dict[str, Any]]],
     render_md: Callable[[AppConfig, Database], str],
     config: AppConfig,
     db: Database,
@@ -87,7 +89,7 @@ def run_pipeline(
     force: bool = False,
     reanalyze_existing: bool = False,
     min_stars: int = 0
-) -> Tuple[Database, str, Dict[str, Any], List[Entry]]:
+) -> tuple[Database, str, dict[str, Any], list[Entry]]:
     """
     Executes the main automated update pipeline functionally.
     
@@ -106,7 +108,7 @@ def run_pipeline(
     entries = db.get('entries', [])
 
     if reanalyze_existing:
-        logger.info(f"Re-analyze mode enabled: updating existing database entries without fetching new ones.")
+        logger.info("Re-analyze mode enabled: updating existing database entries without fetching new ones.")
         candidate_items = list(entries)
     else:
         if force:
@@ -248,10 +250,10 @@ def run_pipeline(
 def generate_markdown_report(
     config: AppConfig,
     db: Database,
-    stats_summary: Dict[str, Any],
+    stats_summary: dict[str, Any],
     fetch_days: int,
     elapsed: float,
-    processed_items: List[Entry]
+    processed_items: list[Entry]
 ) -> str:
     topic = config['topics'][0]
     llm_cfg = config.get('llm', {})

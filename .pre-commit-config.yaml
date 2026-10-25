@@ -1,7 +1,6 @@
 # A small Python script set (src/*.py) with a JSON config and a generated
-# report. There is no project file for `uv run ruff`, and ruff currently
-# reports 67 findings on this tree, so lint is deliberately not a hook yet —
-# fix the tree and add `ruff check src` before it becomes one.
+# report. There is no project file, so ruff comes from ruff-pre-commit at a
+# pinned rev rather than `uv run` (which would need one).
 # One-time setup per clone:  pre-commit install
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -12,6 +11,14 @@ repos:
       - id: check-added-large-files
         args: ["--maxkb=1024"]
       - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.2
+    hooks:
+      # Check-only: `ruff format` would rewrite five of these files, so
+      # formatting is a deliberate cleanup, not a commit gate yet.
+      - id: ruff-check
+        types: [python]
 
   # The hook builds gitleaks with the Go toolchain on first run, so Go must be
   # on PATH; the built binary is cached afterwards. Only the staged diff is

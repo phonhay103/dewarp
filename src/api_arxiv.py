@@ -1,13 +1,14 @@
+import logging
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-import logging
 from datetime import datetime
-from typing import List
+
 from models import Entry
+
 logger = logging.getLogger(__name__)
 
-def fetch_arxiv(query: str, start_date: datetime) -> List[Entry]:
+def fetch_arxiv(query: str, start_date: datetime) -> list[Entry]:
     """
     Fetches papers from the arXiv API based on a query and a start date.
     
@@ -54,7 +55,7 @@ def fetch_arxiv(query: str, start_date: datetime) -> List[Entry]:
                     "authors": authors,
                     "description": description
                 })
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001 - one item failing must not abort the batch
         logger.error(f"Error fetching arXiv data: {e}")
         
     return results

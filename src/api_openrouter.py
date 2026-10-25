@@ -1,9 +1,11 @@
-import os
 import json
-import urllib.request
 import logging
-from typing import Tuple, Dict, Any
-from models import Entry, AppConfig, Topic
+import os
+import urllib.request
+from typing import Any
+
+from models import AppConfig, Entry, Topic
+
 logger = logging.getLogger(__name__)
 
 def build_response_format(name: str, schema: dict) -> dict:
@@ -23,9 +25,9 @@ def analyze_with_llm(
     item: Entry, 
     config: AppConfig, 
     topic: Topic,
-    schema: Dict[str, Any],
+    schema: dict[str, Any],
     schema_name: str = "StructuredResponse"
-) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+) -> tuple[dict[str, Any], dict[str, Any]]:
     """
     Uses an LLM via OpenRouter to analyze an item based on a provided schema.
     
@@ -129,7 +131,7 @@ def analyze_with_llm(
 
                 if parsed:
                     return parsed, usage_info
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - one item failing must not abort the batch
             logger.warning(f"Model '{model}' failed for item '{item['title']}': {e}. Trying fallback if available...")
 
     logger.error(f"All models failed for item '{item['title']}'.")

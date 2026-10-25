@@ -1,16 +1,17 @@
-import os
 import json
+import logging
+import os
+import shutil
+import subprocess
 import urllib.parse
 import urllib.request
-import logging
-import subprocess
-import shutil
 from datetime import datetime
-from typing import List, Dict, Optional
+
 from models import Entry
+
 logger = logging.getLogger(__name__)
 
-def get_github_token() -> Optional[str]:
+def get_github_token() -> str | None:
     """
     Resolves the GitHub token from environment variable 'GITHUB_TOKEN' or local 'gh' CLI.
     Sets os.environ["GITHUB_TOKEN"] if resolved from gh CLI for current process.
@@ -25,19 +26,22 @@ def get_github_token() -> Optional[str]:
                 ["gh", "auth", "token"],
                 capture_output=True,
                 text=True,
-                timeout=5
+                timeout=5,
+                # The return code is inspected below on purpose; a non-zero
+                # exit just means no token, not an error.
+                check=False,
             )
             if res.returncode == 0 and res.stdout.strip():
                 token = res.stdout.strip()
                 os.environ["GITHUB_TOKEN"] = token
                 logger.info("Using GitHub authentication token from local 'gh' CLI.")
                 return token
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - one item failing must not abort the batch
             logger.debug(f"Failed to fetch token from gh CLI: {e}")
             
     return None
 
-def fetch_github(query: str, start_date: datetime, min_stars: int = 0) -> List[Entry]:
+def fetch_github(query: str, start_date: datetime, min_stars: int = 0) -> list[Entry]:
     """
     Fetches repositories from the GitHub API based on a query and a start date.
     
@@ -88,7 +92,7 @@ def fetch_github(query: str, start_date: datetime, min_stars: int = 0) -> List[E
                     "forks": item.get('forks_count', 0),
                     "last_commit": last_commit
                 })
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001 - one item failing must not abort the batch
         logger.error(f"Error fetching GitHub data: {e}")
         
     return results
@@ -118,12 +122,12 @@ def fetch_repo_stats(owner_repo: str) -> dict:
                 "forks": item.get('forks_count', 0),
                 "last_commit": last_commit
             }
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001 - one item failing must not abort the batch
         logger.error(f"Error fetching repo stats for '{owner_repo}': {e}")
         return {}
 
 
-def fetch_batch_repo_stats(owner_repos: List[str]) -> Dict[str, dict]:
+def fetch_batch_repo_stats(owner_repos: list[str]) -> dict[str, dict]:
     """
     Fetches stars, forks, and last commit timestamp for multiple GitHub repositories
     in a SINGLE GraphQL API request.
@@ -136,7 +140,7 @@ def fetch_batch_repo_stats(owner_repos: List[str]) -> Dict[str, dict]:
         logger.warning("GITHUB_TOKEN and local 'gh' auth are not available. Skipping batch GitHub stats update.")
         return {}
 
-    results: Dict[str, dict] = {}
+    results: dict[str, dict] = {}
     batch_size = 100
     
     for i in range(0, len(owner_repos), batch_size):
@@ -184,7 +188,7 @@ def fetch_batch_repo_stats(owner_repos: List[str]) -> Dict[str, dict]:
                             "forks": repo_info.get('forkCount', 0),
                             "last_commit": last_commit
                         }
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - one item failing must not abort the batch
             logger.error(f"Error fetching batch GraphQL repo stats: {e}")
             
     return results
