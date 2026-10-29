@@ -1,0 +1,46 @@
+# Dependabot version updates. Security updates are a repository setting
+# (Settings -> Code security), not something this file can turn on.
+#
+# House policy, matching the rest of the toolchain: weekly, a 7-day cooldown so
+# a fresh (or hijacked) release cannot land before the ecosystem has reacted
+# (uv keeps exclude-newer at 7 days, pnpm minimumReleaseAge at 10080 minutes),
+# minor and patch together in one PR, majors on their own.
+
+version: 2
+
+updates:
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Tokyo"
+    cooldown:
+      default-days: 7
+    groups:
+      minor-and-patch:
+        applies-to: "version-updates"
+        patterns: ["*"]
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "fix"
+      include: "scope"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Tokyo"
+    cooldown:
+      default-days: 7
+    groups:
+      minor-and-patch:
+        applies-to: "version-updates"
+        patterns: ["*"]
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "fix"
+      include: "scope"
