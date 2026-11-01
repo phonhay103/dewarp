@@ -9,8 +9,8 @@
       "authors": "",
       "summary": "The DFE model employs a fully convolutional network to estimate dense displacement flow fields, enabling accurate dewarping of document images and thus improving text recognition performance.",
       "date": "2021",
-      "stars": 196,
-      "forks": 40,
+      "stars": 198,
+      "forks": 38,
       "last_commit": "2022-12-04 13:05:41 UTC",
       "tags": [
         "Dataset",
@@ -75,7 +75,7 @@
       "authors": "",
       "summary": "DewarpNet introduces a stacked 3D‑2D regression network that predicts per‑pixel warp maps to restore scanned document geometry, enabling precise text extraction and downstream analysis.",
       "date": "2019",
-      "stars": 628,
+      "stars": 627,
       "forks": 106,
       "last_commit": "2024-11-10 18:31:01 UTC",
       "tags": [
@@ -353,9 +353,9 @@
       "year": "2023",
       "authors": "ZZZHANG-jx",
       "summary": "Image dewarping corrects geometric distortions to produce rectified images.",
-      "stars": 405,
+      "stars": 414,
       "forks": 26,
-      "last_commit": "2026-09-17 07:50:48 UTC",
+      "last_commit": "2026-10-24 00:13:03 UTC",
       "tags": [
         "Uncategorized"
       ]
@@ -369,9 +369,9 @@
       "year": "2021",
       "authors": "lmmx",
       "summary": "The repository offers tools and models to dewarp scanned page images, correcting geometric distortions so that optical character recognition and document layout analysis can be performed more accurately.",
-      "stars": 247,
+      "stars": 252,
       "forks": 25,
-      "last_commit": "2026-09-28 18:35:29 UTC",
+      "last_commit": "2026-10-26 18:37:57 UTC",
       "tags": [
         "Tool"
       ]
@@ -385,7 +385,7 @@
       "year": "2024",
       "authors": "jiangnanboy",
       "summary": "The work introduces a technique for dewarping document images, removing geometric distortions to enhance subsequent analysis and OCR performance.",
-      "stars": 143,
+      "stars": 144,
       "forks": 24,
       "last_commit": "2024-08-27 14:45:24 UTC",
       "tags": [
@@ -418,7 +418,7 @@
       "year": "2023",
       "authors": "FelixHertlein",
       "summary": "The repo offers an inverse 3D model that reconstructs flat, undistorted 2D images from distorted photos, enabling image dewarping through learned geometric inversion.",
-      "stars": 61,
+      "stars": 63,
       "forks": 4,
       "last_commit": "2024-02-07 16:14:43 UTC",
       "tags": [
@@ -678,7 +678,7 @@
       "date": "2026-07-19",
       "year": "2026",
       "authors": "PINTO0309",
-      "stars": 6,
+      "stars": 10,
       "forks": 0,
       "last_commit": "2026-07-19 11:56:08 UTC",
       "tags": [
@@ -812,9 +812,9 @@
       "date": "2026-08-23",
       "year": "2026",
       "authors": "FarhanLodi",
-      "stars": 3,
-      "forks": 1,
-      "last_commit": "2026-09-04 03:34:28 UTC",
+      "stars": 8,
+      "forks": 2,
+      "last_commit": "2026-10-14 16:05:30 UTC",
       "tags": [
         "Dataset",
         "Method",
@@ -839,6 +839,22 @@
         "Tool"
       ],
       "summary": "A 6-step preprocessing pipeline denoises, dewarps, in paints, applies CLAHE, balances colour, and sharpens corrupted chest X-rays to improve a pretrained pneumonia classifier's input quality."
+    },
+    {
+      "id": "1429812247",
+      "title": "1Dawen/Book-Page-Dewarping",
+      "paper_url": "",
+      "code_url": "https://github.com/1Dawen/Book-Page-Dewarping",
+      "date": "2026-10-22",
+      "year": "2026",
+      "authors": "1Dawen",
+      "stars": 0,
+      "forks": 0,
+      "last_commit": "2026-10-22 13:51:34 UTC",
+      "tags": [
+        "Uncategorized"
+      ],
+      "summary": "Error generating summary."
     }
   ]
 }
